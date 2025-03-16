@@ -17,12 +17,17 @@
         <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.5.1" />
         <PackageReference Include="Meziantou.Extensions.Logging.Xunit" Version="1.0.10" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="NUlid" Version="1.7.2" />
         <PackageReference Include="xunit" Version="2.5.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
 
     <ItemGroup>
         <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="T6_AsyncWithCollection\" />
     </ItemGroup>
 
 </Project>

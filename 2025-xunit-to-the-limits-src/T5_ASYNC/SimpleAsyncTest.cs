@@ -25,9 +25,9 @@ public class SimpleAsyncTest_NotOK: IClassFixture<SimpleSyncLifeTimeWithLoggerFi
     public void ExecuteSync_sync()
     {
         var sut = new AsyncClass(_fixture.TestLogger);
-        _fixture. TestLogger.LogInformation("begin ExecuteAsync ");
+        _fixture. TestLogger.LogInformation("begin Execute sync test ");
         sut.SyncCompute(_filePath);
-        _fixture. TestLogger.LogInformation("finished ExecuteAsync");
+        _fixture. TestLogger.LogInformation("finished Execute sync test");
     }
 
     
@@ -35,9 +35,9 @@ public class SimpleAsyncTest_NotOK: IClassFixture<SimpleSyncLifeTimeWithLoggerFi
     public void ExecuteSync_NotAwaitAsync()
     {
         var sut = new AsyncClass(_fixture.TestLogger);
-        _fixture. TestLogger.LogInformation("begin ExecuteAsync ");
+        _fixture. TestLogger.LogInformation("begin ExecuteAsync test");
         sut.ASyncCompute(_filePath);
-        _fixture. TestLogger.LogInformation("finished ExecuteAsync");
+        _fixture. TestLogger.LogInformation("finished ExecuteAsync test");
     }
     
     
@@ -46,17 +46,16 @@ public class SimpleAsyncTest_NotOK: IClassFixture<SimpleSyncLifeTimeWithLoggerFi
     public async Task ExecuteAsync_OK()
     {  
         var sut = new AsyncClass(_fixture.TestLogger);
-        _fixture. TestLogger.LogInformation("begin ExecuteAsync ");
+        _fixture. TestLogger.LogInformation("begin ExecuteAsync test");
      
         await sut.ASyncCompute(_filePath);
-        _fixture. TestLogger.LogInformation("finished ExecuteAsync");
+        _fixture. TestLogger.LogInformation("finished ExecuteAsync test");
     }
 }
 
 public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
 {
-    
-    public ILogger TestLogger { get; set; } = NullLogger.Instance;
+    public ILogger TestLogger { get; private set; } = NullLogger.Instance;
 
     public int TestableValue { get; private set; }
     
