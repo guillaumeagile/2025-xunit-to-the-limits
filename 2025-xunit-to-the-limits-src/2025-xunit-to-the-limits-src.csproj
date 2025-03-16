@@ -27,6 +27,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="T10_AsyncDriverRepository_SingleAsyncLifeTimeTest\" />
+      <Folder Include="T11_AsyncDriverRepository_FixtureAsyncLifeTimeTest\" />
+      <Folder Include="T12_AsyncDriverRepository_CollectionAsyncLifeTimeTest\" />
       <Folder Include="T6_AsyncWithCollectionHierarchy\" />
     </ItemGroup>
 

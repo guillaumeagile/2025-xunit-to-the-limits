@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src;
 
-public class T3_PrepareWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFixture>
+public class T4_PrepareWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFixture>
 {
     private readonly SimpleSyncLifeTimeFixture _fixture;
 
@@ -24,7 +24,7 @@ public class T3_PrepareWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeF
     }
     
     // we need to have that fixture
-    public T3_PrepareWithFixtureAndOutput(SimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
+    public T4_PrepareWithFixtureAndOutput(SimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
     {
         _fixture = fixture;
         outputHelper.WriteLine("fixture.TestableValue is " + fixture.TestableValue.ToString());

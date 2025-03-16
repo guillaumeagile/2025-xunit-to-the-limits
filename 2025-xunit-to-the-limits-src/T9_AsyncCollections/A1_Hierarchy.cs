@@ -80,10 +80,10 @@ public class TestFixtureWithAsyncDriver : TestFixtureWithAnyAsyncRepo
     public override async Task InitializeAsync()
     {
         await base.InitializeAsync();
-       // TestLogger.LogInformation("SocialAsyncTestWithDriver InitializeAsync");
+       // TestLogger.LogInformation("SocialAsyncTestWithDriver InitializeAsync");  LOGGER IS NOT AVAILABLE AT THIS POINT
         Repository = new AsyncDriverRepository<Element>();
 
-        //the driver as an awaitable method to boot up
+        //the driver has an awaitable method to boot up
         await Task.Delay(500);
     }
 }
