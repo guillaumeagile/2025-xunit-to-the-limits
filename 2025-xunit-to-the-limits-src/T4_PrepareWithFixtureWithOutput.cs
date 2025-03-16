@@ -13,7 +13,6 @@ public class T3_PrepareWithFixtureWithOutput  : IClassFixture<SimpleSyncLifeTime
     [Fact]
     public void Test1()
     {
-       
         _fixture.TestableValue.Should().Be(42);
     }
     
@@ -24,17 +23,16 @@ public class T3_PrepareWithFixtureWithOutput  : IClassFixture<SimpleSyncLifeTime
         sutClass.TestableValue.Should().Be(88);
     }
     
-    // need to have that fixture
+    // we need to have that fixture
     public T3_PrepareWithFixtureWithOutput(SimpleSyncLifeTime fixture, ITestOutputHelper outputHelper)
     {
         _fixture = fixture;
-        outputHelper.WriteLine(fixture.TestableValue.ToString());
-        
+        outputHelper.WriteLine("fixture.TestableValue is " + fixture.TestableValue.ToString());
         
        // outputHelper is not ILogger 🤔
         
         
-       // this.TestLogger = outputHelper.ToLogger<SimpleSyncLifeTime>();
+        this.TestLogger = outputHelper.ToLogger<SimpleSyncLifeTime>();
     }
 
     public ILogger  TestLogger { get; init; }

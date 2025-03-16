@@ -7,6 +7,7 @@ public class T4_SutClass
     public T4_SutClass(ILogger  testLogger)
     {
         testLogger.LogInformation("logger available in SutClass");
+        testLogger.LogDebug("TestableValue of Sut = " + TestableValue.ToString());
     }
-    public object TestableValue { get; } = 88;
+    public int TestableValue { get; } = 88;
 }
