@@ -5,9 +5,9 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src;
 
-public class T3_PrepareWithFixtureWithOutput  : IClassFixture<SimpleSyncLifeTime>
+public class T3_PrepareWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFixture>
 {
-    private readonly SimpleSyncLifeTime _fixture;
+    private readonly SimpleSyncLifeTimeFixture _fixture;
 
 
     [Fact]
@@ -24,7 +24,7 @@ public class T3_PrepareWithFixtureWithOutput  : IClassFixture<SimpleSyncLifeTime
     }
     
     // we need to have that fixture
-    public T3_PrepareWithFixtureWithOutput(SimpleSyncLifeTime fixture, ITestOutputHelper outputHelper)
+    public T3_PrepareWithFixtureAndOutput(SimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
     {
         _fixture = fixture;
         outputHelper.WriteLine("fixture.TestableValue is " + fixture.TestableValue.ToString());
@@ -32,7 +32,7 @@ public class T3_PrepareWithFixtureWithOutput  : IClassFixture<SimpleSyncLifeTime
        // outputHelper is not ILogger 🤔
         
         
-        this.TestLogger = outputHelper.ToLogger<SimpleSyncLifeTime>();
+       // this.TestLogger = outputHelper.ToLogger<SimpleSyncLifeTime>();
     }
 
     public ILogger  TestLogger { get; init; }

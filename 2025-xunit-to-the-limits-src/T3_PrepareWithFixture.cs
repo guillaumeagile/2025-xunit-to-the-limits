@@ -1,6 +1,6 @@
 namespace _2025_xunit_to_the_limits_src;
 
-public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTime>
+public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTimeFixture>
 {
     
     [Fact]
@@ -11,7 +11,7 @@ public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTime>
     }
     
     // need to have that fixture
-    public T3_PrepareWithFixture(SimpleSyncLifeTime fixture)
+    public T3_PrepareWithFixture(SimpleSyncLifeTimeFixture fixture)
     {
         Console.WriteLine(fixture.TestableValue);
     }
@@ -20,11 +20,11 @@ public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTime>
 
 
 
-public class SimpleSyncLifeTime : IDisposable
+public class SimpleSyncLifeTimeFixture : IDisposable
 {
 
     public int TestableValue { get; private set; }
-    public SimpleSyncLifeTime()
+    public SimpleSyncLifeTimeFixture()
     {
         Console.WriteLine("this is the SETUP");
         TestableValue = 42;
