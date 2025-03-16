@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="T6_AsyncWithCollection\" />
+      <Folder Include="T6_AsyncWithCollectionHierarchy\" />
     </ItemGroup>
 
 </Project>
