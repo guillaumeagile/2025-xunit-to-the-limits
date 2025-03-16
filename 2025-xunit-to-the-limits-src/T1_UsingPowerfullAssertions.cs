@@ -5,6 +5,15 @@ namespace _2025_xunit_to_the_limits_src;
 public class T1_UsingPowerfullAssertions
 {
     [Fact]
+    public void StringTest()
+    {
+
+        var s = "earth is shaped like a ball";
+      Assert.Equal( "earth is flat", s);
+
+    }
+    
+    [Fact]
     public void TypeTest()
     {
         object theObject = null;
@@ -86,4 +95,34 @@ public class T1_UsingPowerfullAssertions
         singleEquivalent.Should().ContainSingle()
             .Which.Should().BeEquivalentTo(new { Size = 42 });
     }
+
+    [Fact]
+    public void LogicIsMean()
+    {
+        var func = (int a, int b) => a + b;
+        
+        List<int> differentCases = [10 , 20];
+
+        foreach (var cas in differentCases)
+        {
+            var actualResult = func(cas, cas);
+            actualResult.Should().BeGreaterThan(10);
+            
+            if (cas == 10) actualResult.Should().Be(20);
+        }
+    }
+    
+    [Theory]
+    [InlineData(10, 20)]
+    [InlineData(20, 40)]
+    public void TheoryIsWhatYouNeed(int a, int expected)
+    {
+        var func = (int x, int y) => x + y;
+        
+        var actualResult = func(a, a);
+        actualResult.Should().BeGreaterThan(a);
+        actualResult.Should().Be(expected);
+    }
+    
+    
 }
