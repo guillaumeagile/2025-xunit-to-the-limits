@@ -8,6 +8,5 @@ public class T4_SutClass
     {
         testLogger.LogInformation("logger available in SutClass");
     }
-
     public object TestableValue { get; } = 88;
 }
