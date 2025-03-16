@@ -9,7 +9,7 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
 {
     private readonly MyService sut;
 
-    public SocialTestBase(TestFixtureWithAnyRepo fixture)
+    protected SocialTestBase(TestFixtureWithAnyRepo fixture)
     {
         sut = new MyService  (fixture.Repository);
     }

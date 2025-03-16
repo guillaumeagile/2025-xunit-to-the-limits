@@ -14,16 +14,17 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
     private readonly MyAsyncService sut;
     private readonly ILogger _logger;
 
-    public SocialAsyncTestBase(TestFixtureWithAnyAsyncRepo fixture)
+    protected SocialAsyncTestBase(TestFixtureWithAnyAsyncRepo fixture, ITestOutputHelper outputHelper)
     {
-        _logger = fixture.TestLogger;
-        sut = new MyAsyncService  (fixture.Repository);
+        _logger = outputHelper.ToLogger<SocialAsyncTestBase>();
+        fixture.TestLogger = _logger;
+        sut = new MyAsyncService  (fixture.Repository, _logger);
     }
     
     
     public async Task InitializeAsync()
     {
-
+        _logger.LogTrace("SocialAsyncTestBase InitializeAsync");
     }
 
 
@@ -32,7 +33,7 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
     {
         var anElement = new Element();
    
-        var resOfSave =  await  sut.SaveSocial(anElement);
+        var resOfSave =  await  sut.SaveSocialAsync(anElement);
         
         resOfSave.Should().BeFalse();
     }
@@ -46,7 +47,7 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
 [Collection(nameof(TestFixtureWithAsyncFake))]
 public class SocialAsyncTestWithFake : SocialAsyncTestBase, IClassFixture<TestFixtureWithAsyncFake>
 {
-    public SocialAsyncTestWithFake(TestFixtureWithAsyncFake fixture ) : base(fixture)
+    public SocialAsyncTestWithFake(TestFixtureWithAsyncFake fixture, ITestOutputHelper outputHelper  ) : base(fixture, outputHelper)
     {
     }
 }
@@ -65,7 +66,7 @@ public class TestFixtureWithAsyncFake : TestFixtureWithAnyAsyncRepo
 [Collection(nameof(TestFixtureWithAsyncDriver))]
 public class SocialAsyncTestWithDriver : SocialAsyncTestBase, IClassFixture<TestFixtureWithAsyncDriver>
 {
-    public SocialAsyncTestWithDriver(TestFixtureWithAsyncDriver fixture ) : base(fixture)
+    public SocialAsyncTestWithDriver(TestFixtureWithAsyncDriver fixture, ITestOutputHelper outputHelper ) : base(fixture, outputHelper )
     {
     }
 }
@@ -75,12 +76,14 @@ public class TestFixtureWithAsyncDriver : TestFixtureWithAnyAsyncRepo
     public TestFixtureWithAsyncDriver(  ) : base(  )
     {
     }
-    
-    public override  async   Task InitializeAsync()
+
+    public override async Task InitializeAsync()
     {
-          Repository = new AsyncDriverRepository<Element>();
-          
-          //the driver as an awaitable method to boot up
-          await Task.Delay(500);
+        await base.InitializeAsync();
+       // TestLogger.LogInformation("SocialAsyncTestWithDriver InitializeAsync");
+        Repository = new AsyncDriverRepository<Element>();
+
+        //the driver as an awaitable method to boot up
+        await Task.Delay(500);
     }
 }
