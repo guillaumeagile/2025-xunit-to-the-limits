@@ -1,3 +1,5 @@
+using _2025_xunit_to_the_limits_src.T4_Fixtures;
+
 namespace _2025_xunit_to_the_limits_src.Intros;
 
 public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTimeFixture>
@@ -23,21 +25,3 @@ public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTimeFixture>
 
 
 // parallelize it
-
-public class SimpleSyncLifeTimeFixture : IDisposable
-{
-    public int TestableValue { get; set; }
-    
-    public SimpleSyncLifeTimeFixture()
-    {
-        Console.WriteLine("this is the SETUP");
-        TestableValue = 42;
-    }
-    
-    
-    public void Dispose()
-    {
-        TestableValue = 0;
-        Console.WriteLine("this is the TEARDOW");
-    }
-}
