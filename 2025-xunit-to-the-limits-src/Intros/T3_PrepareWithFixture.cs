@@ -1,7 +1,13 @@
-namespace _2025_xunit_to_the_limits_src;
+namespace _2025_xunit_to_the_limits_src.Intros;
 
 public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTimeFixture>
 {
+    
+    public T3_PrepareWithFixture(SimpleSyncLifeTimeFixture fixture)
+    {
+        Console.WriteLine("entering ctor of " + nameof(T3_PrepareWithFixture));   
+        // Console.WriteLine(fixture.TestableValue);
+    }
     
     [Fact]
     public void Test1()
@@ -11,10 +17,7 @@ public class T3_PrepareWithFixture  : IClassFixture<SimpleSyncLifeTimeFixture>
     }
     
     // need to have that fixture
-    public T3_PrepareWithFixture(SimpleSyncLifeTimeFixture fixture)
-    {
-        Console.WriteLine(fixture.TestableValue);
-    }
+
     
 }
 

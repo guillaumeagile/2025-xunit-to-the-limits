@@ -1,9 +1,9 @@
+using _2025_xunit_to_the_limits_src.Intros;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-
-namespace _2025_xunit_to_the_limits_src.T4_UNSUPPORTED;
+namespace _2025_xunit_to_the_limits_src.T4_Fixtures;
 
 public class T3_PrepareWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeOutputFixture>
 {

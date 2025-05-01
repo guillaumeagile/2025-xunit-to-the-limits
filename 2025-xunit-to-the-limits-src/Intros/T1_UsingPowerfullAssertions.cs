@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace _2025_xunit_to_the_limits_src;
+namespace _2025_xunit_to_the_limits_src.Intros;
 
 public class T1_UsingPowerfullAssertions
 {
