@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T4_Fixtures;
 
-public class T4_B2TestWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFixture>
+public class T4_B2TestWithFixtureAndOutput : IClassFixture<SimpleSyncLifeTimeFixture>
 {
     private readonly SimpleSyncLifeTimeFixture _fixture;
 
@@ -17,7 +17,7 @@ public class T4_B2TestWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFi
         _fixture.TestableValue.Should().Be(42);
     }
 
-    
+
     [Fact]
     //[Trait("MyCategories", "T4_Fixtures")]
     //[Fact(Skip = "vilain petit canard")] 
@@ -26,15 +26,14 @@ public class T4_B2TestWithFixtureAndOutput  : IClassFixture<SimpleSyncLifeTimeFi
         _fixture.TestableValue *= 2;
         _fixture.TestableValue.Should().Be(84);
     }
-    
+
     // we need to have that fixture
     public T4_B2TestWithFixtureAndOutput(SimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
     {
         _fixture = fixture;
-     
     }
 
-        
+
     [Fact]
     [Trait("MyCategories", "T4_Fixtures")]
     public void Test1_Mod()

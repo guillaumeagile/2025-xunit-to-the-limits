@@ -8,21 +8,22 @@ public class AsyncClass
     private readonly ILogger _logger;
     public AsyncClass(ILogger logger) => _logger = logger;
 
-    public  void SyncCompute(string filePath)
+    public void SyncCompute(string filePath)
     {
         _logger.LogInformation("***** begin SyncCompute ");
         using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
-        _ =  MD5.HashData(stream);
+        _ = MD5.HashData(stream);
         _logger.LogInformation("finished SyncCompute *****");
     }
-    
-    public async Task ASyncCompute(string filePath)
+
+    public async Task<string> ASyncCompute(string filePath)
     {
         _logger.LogInformation("***** begin ASyncCompute ");
-    
+
         await using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
-        _ = await MD5.HashDataAsync(stream, CancellationToken.None);
-       
+        var res = await MD5.HashDataAsync(stream, CancellationToken.None);
+        ;
         _logger.LogInformation("finished ASyncCompute *****");
+        return Convert.ToBase64String(res);
     }
 }

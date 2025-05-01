@@ -11,16 +11,15 @@ public class TestFixtureWithAnyAsyncRepo : IAsyncLifetime
     public ILogger TestLogger { get; set; } = NullLogger.Instance;
 
 
-    public virtual  Task InitializeAsync()
+    public virtual Task InitializeAsync()
     {
         // initialize async arrives first, before the construction of the test class
         TestLogger.LogInformation("YOU WILL NEVER SEE THIS");
-      return Task.CompletedTask; 
+        return Task.CompletedTask;
     }
 
     public virtual Task DisposeAsync()
     {
-        return Task.CompletedTask; 
-        
+        return Task.CompletedTask;
     }
 }

@@ -6,21 +6,20 @@ public class MyService
 
     public MyService()
     {
-        
     }
 
     public MyService(IRepository<Element> repository)
     {
-    _repository = repository;
+        _repository = repository;
     }
 
 
-    public  bool SaveAlone(Element anElement)
+    public bool SaveAlone(Element anElement)
     {
         return true;
     }
-    
-    public  bool SaveSocial(Element anElement)
+
+    public bool SaveSocial(Element anElement)
     {
         return _repository.Save(anElement);
     }

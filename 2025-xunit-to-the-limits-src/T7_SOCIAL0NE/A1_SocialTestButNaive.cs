@@ -9,26 +9,25 @@ public class SocialTest
     public void SolitaryTest()
     {
         var anElement = new Element();
-        
-        var sut = new MyService  ();
 
-        var resOfSave =   sut.SaveAlone(anElement);
-        
+        var sut = new MyService();
+
+        var resOfSave = sut.SaveAlone(anElement);
+
         resOfSave.Should().BeTrue();
     }
-    
-    
+
+
     [Fact]
     public void MoreSocialTest()
     {
         var anElement = new Element();
         var fakeRepository = new BrokenFakeRepository<Element>();
-        
-        var sut = new MyService  (fakeRepository);
 
-        var resOfSave =   sut.SaveSocial(anElement);
-        
+        var sut = new MyService(fakeRepository);
+
+        var resOfSave = sut.SaveSocial(anElement);
+
         resOfSave.Should().BeFalse();
     }
-    
 }

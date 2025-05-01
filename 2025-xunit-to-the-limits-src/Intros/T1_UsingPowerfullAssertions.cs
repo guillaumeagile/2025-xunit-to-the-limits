@@ -7,18 +7,16 @@ public class T1_UsingPowerfullAssertions
     [Fact]
     public void StringTest()
     {
-
         var s = "earth is shaped like a ball";
-      Assert.Equal( "earth is flat", s);
-
+        Assert.Equal("earth is flat", s);
     }
-    
+
     [Fact]
     public void TypeTest()
     {
         object theObject = null;
         theObject.Should().BeNull("because the value is null");
-    //    theObject.Should().NotBeNull();
+        //    theObject.Should().NotBeNull();
 
         theObject = "whatever";
         theObject.Should().BeOfType<string>("because a {0} is set", typeof(string));
@@ -26,8 +24,7 @@ public class T1_UsingPowerfullAssertions
     }
 
 
-    [Fact]     
-    
+    [Fact]
     public void CollectionsTest()
     {
         IEnumerable<int> collection = new[] { 1, 2, 5, 8 };
@@ -84,7 +81,6 @@ public class T1_UsingPowerfullAssertions
         collection.Should().HaveElementPreceding(successor, element);
         collection.Should().HaveElementSucceeding(predecessor, element);
 
-    
 
         IEnumerable<int> otherCollection = new[] { 1, 2, 5, 8, 1 };
         IEnumerable<int> anotherCollection = new[] { 10, 20, 50, 80, 10 };
@@ -100,29 +96,27 @@ public class T1_UsingPowerfullAssertions
     public void LogicIsMean()
     {
         var func = (int a, int b) => a + b;
-        
-        List<int> differentCases = [10 , 20];
+
+        List<int> differentCases = [10, 20];
 
         foreach (var cas in differentCases)
         {
             var actualResult = func(cas, cas);
             actualResult.Should().BeGreaterThan(10);
-            
+
             if (cas == 10) actualResult.Should().Be(20);
         }
     }
-    
+
     [Theory]
     [InlineData(10, 20)]
     [InlineData(20, 40)]
     public void TheoryIsWhatYouNeed(int a, int expected)
     {
         var func = (int x, int y) => x + y;
-        
+
         var actualResult = func(a, a);
         actualResult.Should().BeGreaterThan(a);
         actualResult.Should().Be(expected);
     }
-    
-    
 }

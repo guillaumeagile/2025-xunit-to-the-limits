@@ -11,17 +11,15 @@ public class MyAsyncService
     public MyAsyncService(IAsyncRepository<Element> repository, ILogger logger)
     {
         logger.LogInformation("logger available in MyAsyncService");
-         _repository = repository;
-         _logger = logger;
+        _repository = repository;
+        _logger = logger;
     }
 
 
-    
     public async Task<bool> SaveSocialAsync(Element anElement)
     {
         _logger.LogInformation("begin task in SaveSocial");
         return await _repository.SaveAsync(anElement);
         _logger.LogInformation("end task in SaveSocial");
-        
     }
 }
