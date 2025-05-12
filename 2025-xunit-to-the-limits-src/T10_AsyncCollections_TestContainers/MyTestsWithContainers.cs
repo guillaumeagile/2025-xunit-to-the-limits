@@ -29,7 +29,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
     [Fact]
     public async Task IsolatedProof_MongoDB()
     {
-        var mongoAdapter = new MongoAdapter<SomeDto>(_mongoDbConnection);
+        var mongoAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
 
         var token = new CancellationToken();
 
@@ -41,7 +41,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
     [Fact]
     public async Task SaveSomeDto_ToMongoDB()
     {
-        var mongoAdapter = new MongoAdapter<SomeDto>(_mongoDbConnection);
+        var mongoAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
 
         var token = new CancellationToken();
         
@@ -52,6 +52,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         var resultGetAll = await mongoAdapter.GetAllAsync(token);
         resultGetAll.IsSuccess.Should().BeTrue();
         resultGetAll.Value.Should().NotBeEmpty();
+        resultGetAll.Value.First().Should().Be(new SomeDto("1", "Foo", 20));
         
         var estimatedCount = await mongoAdapter.EstimatedCountAsync(token);
         estimatedCount.Should().Be(1);
@@ -62,7 +63,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
     public async Task ZIsolatedProof_MongoDB()
     {
         
-        var mongoAdapter = new MongoAdapter<SomeDto>(_mongoDbConnection);
+        var mongoAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
 
         var token = new CancellationToken();
 

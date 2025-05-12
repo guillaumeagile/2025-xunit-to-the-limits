@@ -6,7 +6,7 @@ using Testcontainers.MongoDb;
 
 namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
 
-public class TestFixtureWithContainer4Mongo : IAsyncLifetime    // <----- ⚠️ 
+public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠️ 
 {
     private const string _mongoImage = "mongo:7.0.16-jammy";
    // private const int _mongoInternalPort = 27017;
@@ -19,7 +19,7 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime    // <----- ⚠️
 
     public async Task InitializeAsync()
     {
-        var builder2 = new MongoDbBuilder()
+        var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
             .WithCleanUp(true)
             .WithReuse(true)
@@ -27,7 +27,7 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime    // <----- ⚠️
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
        
-        _mongoContainer = builder2.Build();
+        _mongoContainer = builder.Build();
       
         await _mongoContainer.StartAsync();
         TestLogger.LogInformation("MongoDbContainer started");

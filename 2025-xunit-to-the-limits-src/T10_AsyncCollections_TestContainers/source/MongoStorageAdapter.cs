@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.source;
 
-public class MongoAdapter<T>(MongoDbConnection? mongoDbConnection) : IMongoAdapter<T> where T : IDto
+public class MongoStorageAdapter<T>(MongoDbConnection? mongoDbConnection) : IStorageAdapter<T> where T : IDto
 {
     private readonly IMongoCollection<T> _collection = mongoDbConnection.GetCollection<T>(typeof(T).Name);
 

@@ -10,7 +10,7 @@ public interface IDto
     
 }
 
-public interface IMongoAdapter<T> where T : IDto
+public interface IStorageAdapter<T> where T : IDto
 {
     Task<Result<T>> GetByIdAsync(string id, CancellationToken token);
 
