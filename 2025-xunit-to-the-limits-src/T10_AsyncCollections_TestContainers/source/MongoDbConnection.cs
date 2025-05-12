@@ -4,13 +4,12 @@ namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.sour
 
 public class MongoDbConnection
 {
-    private readonly IMongoClient _client;
     private readonly IMongoDatabase _database;
 
     public MongoDbConnection(string connectionString, string databaseName)
     {
-        _client = new MongoClient(connectionString);
-        _database = _client.GetDatabase(databaseName);
+        IMongoClient client = new MongoClient(connectionString);
+        _database = client.GetDatabase(databaseName);
     }
 
     public IMongoCollection<T> GetCollection<T>(string collectionName)
