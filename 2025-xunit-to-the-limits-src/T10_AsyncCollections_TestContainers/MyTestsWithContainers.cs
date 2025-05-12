@@ -9,7 +9,7 @@ namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
 
 
 [Collection(nameof(TestFixtureWithContainer4Mongo))]
-public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>  //, IAsyncLifetime
+public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>  , IAsyncLifetime
 {
     private readonly string? _mongoConnectionString;
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;
@@ -21,9 +21,10 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         TestLogger = outputHelper.ToLogger<MyTestsWithContainers>();
         fixture.TestLogger.LogInformation("TestsWithContainers constructed");
         
-        _mongoConnectionString = fixture.DbConnectionString();  // NOOOOOOO ! why ?
+      //  _mongoConnectionString = fixture.DbConnectionString();  // NOOOOOOO ! why ?
         
         _mongoFixture = fixture;
+        _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(), _mongoFixture.DbName());
     }
 
     [Fact]

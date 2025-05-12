@@ -4,9 +4,14 @@ using MongoDB.Driver;
 
 namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.source;
 
-public class MongoStorageAdapter<T>(MongoDbConnection? mongoDbConnection) : IStorageAdapter<T> where T : IDto
+public class MongoStorageAdapter<T> : IStorageAdapter<T> where T : IDto
 {
-    private readonly IMongoCollection<T> _collection = mongoDbConnection.GetCollection<T>(typeof(T).Name);
+    private readonly IMongoCollection<T> _collection;
+
+    public MongoStorageAdapter(MongoDbConnection mongoDbConnection)
+    {
+        _collection = mongoDbConnection.GetCollection<T>(typeof(T).Name);
+    }
 
     public async Task<Result<T>> GetByIdAsync(string id, CancellationToken token)
     {

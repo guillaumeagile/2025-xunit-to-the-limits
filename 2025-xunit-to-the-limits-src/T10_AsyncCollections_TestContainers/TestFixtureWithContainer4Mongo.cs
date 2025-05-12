@@ -21,8 +21,8 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
     {
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
-            .WithCleanUp(true)
-            .WithReuse(true)
+           // .WithCleanUp(true)
+           // .WithReuse(true)
            // .WithPortBinding(_mongoInternalPort, true)          
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;

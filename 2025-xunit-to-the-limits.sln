@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2025-xunit-to-the-limits-src", "2025-xunit-to-the-limits-src\2025-xunit-to-the-limits-src.csproj", "{1C66319E-78D2-406B-85D0-6D4CC06E38B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarkToTheLimits", "BenchmarkToTheLimits\BenchmarkToTheLimits.csproj", "{1E694F1D-0356-4365-BB48-52FB0B8FE4B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1C66319E-78D2-406B-85D0-6D4CC06E38B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C66319E-78D2-406B-85D0-6D4CC06E38B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C66319E-78D2-406B-85D0-6D4CC06E38B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E694F1D-0356-4365-BB48-52FB0B8FE4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E694F1D-0356-4365-BB48-52FB0B8FE4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E694F1D-0356-4365-BB48-52FB0B8FE4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E694F1D-0356-4365-BB48-52FB0B8FE4B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
