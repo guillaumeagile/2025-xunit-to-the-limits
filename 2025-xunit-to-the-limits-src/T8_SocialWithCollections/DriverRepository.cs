@@ -6,6 +6,7 @@ public class DriverRepository<T> : IRepository<Element>
 {
     public bool Save(Element anElement)
     {
-        throw new NotImplementedException("DriverRepository Save is not implemented");
+        Thread.Sleep(500);
+        return false;
     }
 }

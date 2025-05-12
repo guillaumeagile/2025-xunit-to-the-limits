@@ -1,0 +1,56 @@
+using DotNet.Testcontainers.Images;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using MongoDB.Driver;
+using Testcontainers.MongoDb;
+
+namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
+
+public class TestFixtureWithContainer4Mongo : IAsyncLifetime    // <----- ⚠️ 
+{
+    private const string _mongoImage = "mongo:7.0.16-jammy";
+   // private const int _mongoInternalPort = 27017;
+    //  private const int DefaultMongoExternalPort = 27019;
+    
+    private MongoDbContainer? _mongoContainer;
+    private MongoClient dbClient;
+    private string _dbName;
+    public ILogger TestLogger { get; set; } = NullLogger.Instance;
+
+    public async Task InitializeAsync()
+    {
+        var builder2 = new MongoDbBuilder()
+            .WithImage(_mongoImage)
+            .WithCleanUp(true)
+            .WithReuse(true)
+           // .WithPortBinding(_mongoInternalPort, true)          
+            .WithImagePullPolicy(  PullPolicy.Missing)
+            .WithLogger(TestLogger );;
+       
+        _mongoContainer = builder2.Build();
+      
+        await _mongoContainer.StartAsync();
+        TestLogger.LogInformation("MongoDbContainer started");
+        
+        dbClient = new MongoClient(_mongoContainer.GetConnectionString());
+        
+        _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!!
+        dbClient.GetDatabase(_dbName);  
+    }
+
+    public async Task DisposeAsync()
+    {
+         await _mongoContainer.DisposeAsync();
+    }
+
+    public string? DbConnectionString()
+    {
+        return _mongoContainer.GetConnectionString();
+    }
+
+
+    public string DbName()
+    {
+        return _dbName; 
+    }
+}

@@ -4,8 +4,9 @@ namespace _2025_xunit_to_the_limits_src.T9_AsyncCollections;
 
 public class AsyncFakeRepository<T> : IAsyncRepository<Element>
 {
-    public Task<bool> SaveAsync(Element anElement)
+    public async Task<bool> SaveAsync(Element anElement)
     {
-        throw new NotImplementedException("AsyncFakeRepository");
+        await Task.Delay(500);
+        return true;
     }
 }

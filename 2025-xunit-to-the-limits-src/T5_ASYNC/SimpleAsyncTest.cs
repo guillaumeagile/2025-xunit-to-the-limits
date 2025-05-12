@@ -60,7 +60,6 @@ public class SimpleAsyncTest_NotOK : IClassFixture<SimpleSyncLifeTimeWithLoggerF
 
         actual.Should().BeAssignableTo<String>().And
         .NotBeAssignableTo<Task>();
-
     }
     
 }

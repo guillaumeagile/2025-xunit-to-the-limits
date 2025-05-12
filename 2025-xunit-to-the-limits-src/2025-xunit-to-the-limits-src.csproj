@@ -14,10 +14,15 @@
     <ItemGroup>
         <PackageReference Include="AwesomeAssertions" Version="8.0.2"/>
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="FluentResults" Version="3.16.0" />
         <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.5.1"/>
         <PackageReference Include="Meziantou.Extensions.Logging.Xunit" Version="1.0.10"/>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="MongoDB.Bson" Version="3.4.0" />
+        <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
         <PackageReference Include="NUlid" Version="1.7.2"/>
+        <PackageReference Include="Testcontainers" Version="4.4.0" />
+        <PackageReference Include="Testcontainers.MongoDb" Version="4.4.0" />
         <PackageReference Include="xunit" Version="2.5.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
@@ -27,7 +32,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="T10_AsyncDriverRepository_SingleAsyncLifeTimeTest\"/>
         <Folder Include="T11_AsyncDriverRepository_FixtureAsyncLifeTimeTest\"/>
         <Folder Include="T12_AsyncDriverRepository_CollectionAsyncLifeTimeTest\"/>
         <Folder Include="T6_AsyncWithCollectionHierarchy\"/>
