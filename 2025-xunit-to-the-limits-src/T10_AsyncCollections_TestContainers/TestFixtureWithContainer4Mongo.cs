@@ -9,7 +9,7 @@ namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
 public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠️ 
 {
     private const string _mongoImage = "mongo:7.0.16-jammy";
-   // private const int _mongoInternalPort = 27017;
+    private const int _mongoInternalPort = 27017;
     //  private const int DefaultMongoExternalPort = 27019;
     
     private MongoDbContainer? _mongoContainer;
@@ -21,9 +21,11 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠�
     {
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
-           // .WithCleanUp(true)
-           // .WithReuse(true)
-           // .WithPortBinding(_mongoInternalPort, true)          
+         
+            .WithCleanUp(true)
+        //    .WithReuse(true)    // BE CAREFUL !!!! NO MORE ISOLATION
+        //    .WithPortBinding(_mongoInternalPort, true)  // ALL 3 together to avoid port conflicts and stall         
+            
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
        

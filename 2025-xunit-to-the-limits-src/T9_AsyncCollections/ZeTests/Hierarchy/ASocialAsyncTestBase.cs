@@ -15,21 +15,23 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
     {
         var anElement = new Element();
 
-        var resOfSave = await sut.SaveSocialAsync(anElement);
+        var resOfSave = await _sut.SaveSocialAsync(anElement);
 
         resOfSave.Should().BeTrue();
+        
+        _logger.LogTrace( _fixture.Uid);
     }
     
-    
-    
     private readonly ILogger _logger;
-    private readonly MyAsyncService sut;
+    private readonly MyAsyncService _sut;
+    private readonly TestFixtureWithAnyAsyncRepo _fixture;
 
     protected SocialAsyncTestBase(TestFixtureWithAnyAsyncRepo fixture, ITestOutputHelper outputHelper)
     {
         _logger = outputHelper.ToLogger<SocialAsyncTestBase>();
         fixture.TestLogger = _logger;
-        sut = new MyAsyncService(fixture.Repository, _logger);
+        _fixture = fixture;
+        _sut = new MyAsyncService(fixture.Repository, _logger);
     }
 
 
@@ -40,7 +42,7 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
 
     public async Task DisposeAsync()
     {
-        _logger.LogTrace("SocialAsyncTestBase DisposeAsync NEVER LOGGED");
+        _logger.LogTrace("SocialAsyncTestBase DisposeAsync");
     }
 
 

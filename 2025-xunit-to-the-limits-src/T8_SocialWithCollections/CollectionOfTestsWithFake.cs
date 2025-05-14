@@ -8,6 +8,12 @@ public class CollectionOfTestsWithFake : ICollectionFixture<TestFixtureWithFake>
 {
 }
 
+[CollectionDefinition(nameof(AnotherCollectionOfTestsWithFake))] //same fixture
+public class AnotherCollectionOfTestsWithFake : ICollectionFixture<TestFixtureWithFake>
+{
+}
+
+
 public class TestFixtureWithAnyRepo
 {
     public IRepository<Element> Repository { get; protected set; }
@@ -23,6 +29,7 @@ public class TestFixtureWithDriver : TestFixtureWithAnyRepo
     public TestFixtureWithDriver() => Repository = new DriverRepository<Element>();
 }
 
+// will be used when removing the comment in A0_SocialTestCollectable
 [CollectionDefinition(nameof(CollectionOfTestsWithDriver))]
 public class CollectionOfTestsWithDriver : ICollectionFixture<TestFixtureWithDriver>
 {

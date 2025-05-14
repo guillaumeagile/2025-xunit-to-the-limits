@@ -8,6 +8,8 @@ public class TestFixtureWithAnyAsyncRepo : IAsyncLifetime
 {
     public IAsyncRepository<Element> Repository { get; set; } = null!;
     public ILogger TestLogger { get; set; } = NullLogger.Instance;
+    
+    public string Uid { get; protected  set; } = String.Empty;
 
 
     public virtual Task InitializeAsync()

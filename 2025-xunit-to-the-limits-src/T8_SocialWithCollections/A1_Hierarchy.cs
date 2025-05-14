@@ -4,14 +4,13 @@ using FluentAssertions;
 
 namespace _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
 
-//the runner will not run an abstract class
 public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
 {
-    private readonly MyService sut;
+    private readonly MyService _sut;
 
     protected SocialTestBase(TestFixtureWithAnyRepo fixture)
     {
-        sut = new MyService(fixture.Repository);
+        _sut = new MyService(fixture.Repository);
     }
 
 
@@ -20,7 +19,7 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
     {
         var anElement = new Element();
 
-        var resOfSave = sut.SaveSocial(anElement);
+        var resOfSave = _sut.SaveSocial(anElement);
 
         resOfSave.Should().BeTrue("this tests is supposed to run with a friend, not a foe!");
     }
