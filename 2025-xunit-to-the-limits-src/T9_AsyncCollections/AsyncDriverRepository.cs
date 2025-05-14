@@ -7,6 +7,6 @@ public class AsyncDriverRepository<T> : IAsyncRepository<Element>
 {
     public Task<bool> SaveAsync(Element anElement)
     {
-        throw new NotImplementedException("AsyncDriverRepository");
+        return Task.FromResult(false);
     }
 }

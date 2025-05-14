@@ -8,6 +8,6 @@ public class DriverRepository<T> : IRepository<Element>
     public bool Save(Element anElement)
     {
         Thread.Sleep(500);
-        return false;
+        return true;
     }
 }

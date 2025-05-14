@@ -3,14 +3,10 @@ using _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
 
 namespace _2025_xunit_to_the_limits_src.T7_SOCIAL0NE;
 
-[CollectionDefinition(nameof(CollectionOfTestsWithFakeOk))]
-public class CollectionOfTestsWithFakeOk : ICollectionFixture<TestFixtureWithFakeOk>
-{
-}
 
-public class TestFixtureWithFakeOk : ITestFixtureWithRepository
+public class TestFixtureWithRepo : ITestFixtureWithRepository
 {
-    public TestFixtureWithFakeOk()
+    public TestFixtureWithRepo()
     {
         Repository = new DriverRepository <Element>();
     }

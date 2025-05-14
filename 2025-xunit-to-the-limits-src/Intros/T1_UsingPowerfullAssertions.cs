@@ -7,10 +7,13 @@ public class T1_UsingPowerfullAssertions
     [Fact]
     public void StringTest()
     {
-        var s = "earth is shaped like a ball";
+        var s = "earth is flat";
         Assert.Equal("earth is flat", s);
     }
 
+    
+    
+    
     [Fact]
     public void TypeTest()
     {
@@ -18,9 +21,17 @@ public class T1_UsingPowerfullAssertions
         theObject.Should().BeNull("because the value is null");
         //    theObject.Should().NotBeNull();
 
+        
+        
+        
+        
+        
+        
         theObject = "whatever";
         theObject.Should().BeOfType<string>("because a {0} is set", typeof(string));
         theObject.Should().BeOfType(typeof(string), "because a {0} is set", typeof(string));
+
+        theObject.Should().BeOfType<string>().Subject.Should().Be("whatever");
     }
 
 

@@ -56,7 +56,7 @@ public class SimpleAsyncTest_NotOK : IClassFixture<SimpleSyncLifeTimeWithLoggerF
     {
         var sut = new AsyncClass(_fixture.TestLogger);
         
-        var actual = sut.ASyncCompute(_filePath);
+        var actual = await sut.ASyncCompute(_filePath);
 
         actual.Should().BeAssignableTo<String>().And
         .NotBeAssignableTo<Task>();

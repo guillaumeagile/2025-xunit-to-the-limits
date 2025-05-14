@@ -6,9 +6,14 @@ public class T2_SyncLifeTime
 {
     private int field = 0;
 
+    public T2_SyncLifeTime()
+    {
+           field = 2;
+    }
+    
     public void Setup()
     {
-        field = 2;
+     
     }
 
     [Fact]
