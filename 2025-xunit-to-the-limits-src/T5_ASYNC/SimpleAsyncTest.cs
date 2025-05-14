@@ -6,18 +6,18 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T5_ASYNC;
 
-public class SimpleAsyncTest_NotOK : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture>
+public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture>, IAsyncLifetime
 {
     private readonly string _filePath;
     private readonly SimpleSyncLifeTimeWithLoggerFixture _fixture;
 
 
-    public SimpleAsyncTest_NotOK(SimpleSyncLifeTimeWithLoggerFixture fixture, ITestOutputHelper outputHelper)
+    public SimpleAsyncTest(SimpleSyncLifeTimeWithLoggerFixture fixture, ITestOutputHelper outputHelper)
     {
         fixture.SetOutputToLogger(outputHelper);
         _fixture = fixture;
         _filePath = Path.Combine(Directory.GetCurrentDirectory(), "2025-xunit-to-the-limits-src.dll");
-        fixture.TestLogger.LogInformation("SimpleAsyncTest_NotOK constructed");
+        fixture.TestLogger.LogInformation("SimpleAsyncTest  constructed");
     }
 
 
@@ -52,7 +52,7 @@ public class SimpleAsyncTest_NotOK : IClassFixture<SimpleSyncLifeTimeWithLoggerF
     }
     
     [Fact]
-    public async void Rewrite_ExecuteSync_Await_AndVerifyResult()
+    public async Task Rewrite_ExecuteSync_Await_AndVerifyResult()
     {
         var sut = new AsyncClass(_fixture.TestLogger);
         
@@ -61,7 +61,18 @@ public class SimpleAsyncTest_NotOK : IClassFixture<SimpleSyncLifeTimeWithLoggerF
         actual.Should().BeAssignableTo<String>().And
         .NotBeAssignableTo<Task>();
     }
-    
+
+    public Task InitializeAsync()
+    {
+        _fixture.TestLogger.LogInformation("🎬🎬🎬🎬 InitializeAsync");
+        return Task.CompletedTask;
+    }
+
+    public Task DisposeAsync()
+    {
+        _fixture.TestLogger.LogInformation("✋✋✋✋ DisposeAsync");
+        return Task.CompletedTask;
+    }
 }
 
 public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
@@ -76,7 +87,7 @@ public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
 
     public SimpleSyncLifeTimeWithLoggerFixture()
     {
-        TestLogger.LogWarning("this is the SETUP");
+        TestLogger.LogWarning("this is the SETUP");   // WARNING ! you will never see this
         TestableValue = 42;
     }
 
@@ -84,6 +95,6 @@ public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
     public void Dispose()
     {
         TestableValue = 0;
-        TestLogger.LogTrace("this is the TEARDOW");
+        TestLogger.LogCritical("this is the TEARDOW");
     }
 }

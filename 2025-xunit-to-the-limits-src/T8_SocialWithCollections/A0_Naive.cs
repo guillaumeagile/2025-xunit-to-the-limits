@@ -4,7 +4,8 @@ using FluentAssertions;
 
 namespace _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
 
-[Collection(nameof(TestFixtureWithFake))]
+[Collection(nameof(CollectionOfTestsWithFake))] //we force to use the fake
+                                                                            // [Collection(nameof(CollectionOfTestsWithDriver))]   // now try with the driver
 public class A0_SocialTestCollectable : IClassFixture<TestFixtureWithAnyRepo>
 {
     private readonly MyService sut;
@@ -13,7 +14,8 @@ public class A0_SocialTestCollectable : IClassFixture<TestFixtureWithAnyRepo>
     {
         sut = new MyService(fixture.Repository);
     }
-
+//   public A0_SocialTestCollectable(TestFixtureWithRepo fixture)
+    
 
     [Fact]
     public void SocialPalGivenByFixture()
@@ -22,6 +24,6 @@ public class A0_SocialTestCollectable : IClassFixture<TestFixtureWithAnyRepo>
 
         var resOfSave = sut.SaveSocial(anElement);
 
-        resOfSave.Should().BeFalse();
+        resOfSave.Should().BeFalse("because i'm using fake");
     }
 }

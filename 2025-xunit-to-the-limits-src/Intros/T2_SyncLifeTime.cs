@@ -8,7 +8,7 @@ public class T2_SyncLifeTime
 
     public T2_SyncLifeTime()
     {
-           field = 2;
+        
     }
     
     public void Setup()

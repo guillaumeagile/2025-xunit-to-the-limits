@@ -22,7 +22,7 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
 
         var resOfSave = sut.SaveSocial(anElement);
 
-        resOfSave.Should().BeFalse();
+        resOfSave.Should().BeTrue("this tests is supposed to run with a friend, not a foe!");
     }
 }
 

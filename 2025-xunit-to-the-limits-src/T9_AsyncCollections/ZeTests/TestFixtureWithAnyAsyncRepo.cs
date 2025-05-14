@@ -1,10 +1,8 @@
-using _2025_xunit_to_the_limits_src.T7_SOCIAL0NE;
 using _2025_xunit_to_the_limits_src.T7_SOCIAL0NE.sources;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Xunit.Abstractions;
 
-namespace _2025_xunit_to_the_limits_src.T9_AsyncCollections;
+namespace _2025_xunit_to_the_limits_src.T9_AsyncCollections.ZeTests;
 
 public class TestFixtureWithAnyAsyncRepo : IAsyncLifetime
 {
