@@ -8,8 +8,8 @@ using Xunit.Abstractions;
 namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
 
 // TRY TO RUN without the collection, it will create 2 containers at the same time (because of ZOhterTestsWithContainers)
-//[Collection(nameof(TestFixtureWithContainer4Mongo))]   // will run in sequence
-//[Collection((nameof(CollectionDefinitionOfTestsWithSameContainer)))]  // 2 classes with the same collectionDefinition will run in parallel, inside each class methods will go in sequence 
+//[Collection(nameof(TestFixtureWithContainer4Mongo))]   // will run in sequence  >>>>> Container-per-class Strategy
+//[Collection((nameof(CollectionDefinitionOfTestsWithSameContainer)))]  //   Container-per-collection strategy >>>>  2 classes with the same collectionDefinition will run in parallel, inside each class methods will go in sequence 
 public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
 {
     private readonly string? _mongoConnectionString;
