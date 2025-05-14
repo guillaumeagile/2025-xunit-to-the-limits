@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace _2025_xunit_to_the_limits_src.T4_Fixtures;
+namespace _2025_xunit_to_the_limits_src.T3_Fixtures;
 
 public class T4_SutClass
 {

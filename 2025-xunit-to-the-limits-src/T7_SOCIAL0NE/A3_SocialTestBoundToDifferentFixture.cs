@@ -26,7 +26,7 @@ public class A3_SocialTestBoundToOneFixture : IClassFixture<TestFixtureWithFake>
 
         var resOfSave = sut.SaveSocial(anElement);
 
-        resOfSave.Should().BeTrue();  
+        resOfSave.Should().BeTrue("are you a friend ?");  
         // hey, it"s a different behaviour.... neeed to change this assertion !!!
     }
 }

@@ -1,10 +1,9 @@
-using System.Security.Cryptography;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit.Abstractions;
 
-namespace _2025_xunit_to_the_limits_src.T5_ASYNC;
+namespace _2025_xunit_to_the_limits_src.T4_ASYNC;
 
 public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture>, IAsyncLifetime
 {
@@ -24,7 +23,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     [Fact]
     public void ExecuteSync_sync()
     {
-        var sut = new AsyncClass(_fixture.TestLogger);
+        var sut = new SutClassAsync(_fixture.TestLogger);
         _fixture.TestLogger.LogInformation("begin Execute sync test ");
         sut.SyncCompute(_filePath);
         _fixture.TestLogger.LogInformation("finished Execute sync test");
@@ -34,7 +33,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     [Fact]
     public void ExecuteSync_NotAwaitAsync()
     {
-        var sut = new AsyncClass(_fixture.TestLogger);
+        var sut = new SutClassAsync(_fixture.TestLogger);
         _fixture.TestLogger.LogInformation("begin ExecuteAsync test");
         sut.ASyncCompute(_filePath);
         _fixture.TestLogger.LogInformation("finished ExecuteAsync test");
@@ -44,7 +43,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     [Fact]
     public async Task ExecuteAsync_OK()
     {
-        var sut = new AsyncClass(_fixture.TestLogger);
+        var sut = new SutClassAsync(_fixture.TestLogger);
         _fixture.TestLogger.LogInformation("begin ExecuteAsync test");
 
         await sut.ASyncCompute(_filePath);
@@ -54,7 +53,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     [Fact]
     public async Task Rewrite_ExecuteSync_Await_AndVerifyResult()
     {
-        var sut = new AsyncClass(_fixture.TestLogger);
+        var sut = new SutClassAsync(_fixture.TestLogger);
         
         var actual = await sut.ASyncCompute(_filePath);
 

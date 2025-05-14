@@ -1,12 +1,12 @@
 using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
 
-namespace _2025_xunit_to_the_limits_src.T5_ASYNC;
+namespace _2025_xunit_to_the_limits_src.T4_ASYNC;
 
-public class AsyncClass
+public class SutClassAsync
 {
     private readonly ILogger _logger;
-    public AsyncClass(ILogger logger) => _logger = logger;
+    public SutClassAsync(ILogger logger) => _logger = logger;
 
     public void SyncCompute(string filePath)
     {

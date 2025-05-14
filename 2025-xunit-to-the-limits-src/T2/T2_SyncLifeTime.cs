@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace _2025_xunit_to_the_limits_src.Intros;
+namespace _2025_xunit_to_the_limits_src.T2;
 
 public class T2_SyncLifeTime
 {
