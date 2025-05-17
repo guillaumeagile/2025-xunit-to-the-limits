@@ -1,7 +1,7 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using Microsoft.Extensions.Logging;
 
-namespace _2025_xunit_to_the_limits_src.T9_AsyncCollections.TheSUT;
+namespace _2025_xunit_to_the_limits_src.T7_SocialAsyncCollections.TheSUT;
 
 public class MyAsyncService
 {

@@ -2,7 +2,7 @@ using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace _2025_xunit_to_the_limits_src.T9_AsyncCollections.ZeTests;
+namespace _2025_xunit_to_the_limits_src.T7_SocialAsyncCollections.ZeTests;
 
 public class TestFixtureWithAnyAsyncRepo : IAsyncLifetime
 {
