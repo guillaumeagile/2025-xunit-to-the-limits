@@ -1,8 +1,6 @@
-using _2025_xunit_to_the_limits_src.T7_SOCIAL0NE.sources;
-using _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
-using NUlid;
+using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 
-namespace _2025_xunit_to_the_limits_src.T7_SOCIAL0NE;
+namespace _2025_xunit_to_the_limits_src.T5_SOCIAL0NE;
 
 
 

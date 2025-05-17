@@ -1,5 +1,4 @@
 using _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.source;
-using _2025_xunit_to_the_limits_src.T7_SOCIAL0NE;
 using _2025_xunit_to_the_limits_src.T9_AsyncCollections;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;

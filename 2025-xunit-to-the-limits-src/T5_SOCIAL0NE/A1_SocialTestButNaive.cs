@@ -1,10 +1,9 @@
-using _2025_xunit_to_the_limits_src.T7_SOCIAL0NE.sources;
+using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
 using FluentAssertions;
-using NUlid;
-using MyService = _2025_xunit_to_the_limits_src.T7_SOCIAL0NE.sources.MyService;
+using MyService = _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources.MyService;
 
-namespace _2025_xunit_to_the_limits_src.T7_SOCIAL0NE;
+namespace _2025_xunit_to_the_limits_src.T5_SOCIAL0NE;
 
 public class SocialTest
 {
