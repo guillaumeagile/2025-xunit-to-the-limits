@@ -1,7 +1,7 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using FluentAssertions;
 
-namespace _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
+namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 
 public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
 {

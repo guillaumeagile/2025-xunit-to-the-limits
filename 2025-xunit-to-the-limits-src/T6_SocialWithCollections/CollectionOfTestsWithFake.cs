@@ -1,7 +1,7 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE;
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 
-namespace _2025_xunit_to_the_limits_src.T8_SocialWithCollections;
+namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 
 [CollectionDefinition(nameof(CollectionOfTestsWithFake))]
 public class CollectionOfTestsWithFake : ICollectionFixture<TestFixtureWithFake>
