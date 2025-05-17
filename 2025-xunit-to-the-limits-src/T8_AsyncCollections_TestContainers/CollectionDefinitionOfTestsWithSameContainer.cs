@@ -1,4 +1,4 @@
-namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
+namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
 [CollectionDefinition(nameof(CollectionDefinitionOfTestsWithSameContainer))]
 public class CollectionDefinitionOfTestsWithSameContainer : ICollectionFixture<TestFixtureWithContainer4Mongo>

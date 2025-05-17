@@ -1,9 +1,9 @@
-using _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.source;
+using _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers.source;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit.Abstractions;
 
-namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
+namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
 // TRY TO RUN without the collection, it will create 2 containers at the same time (because of ZOhterTestsWithContainers)
 //[Collection(nameof(TestFixtureWithContainer4Mongo))]   // in sequence

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using MongoDB.Driver;
 using Testcontainers.MongoDb;
 
-namespace _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers;
+namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
 public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠️ 
 {
