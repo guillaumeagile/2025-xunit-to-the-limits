@@ -23,7 +23,7 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
             .WithImage(_mongoImage)
          
             .WithCleanUp(true)
-        //    .WithReuse(true)    // BE CAREFUL !!!! NO MORE ISOLATION
+            //.WithReuse(true)    // BE CAREFUL !!!! NO MORE ISOLATION
         //    .WithPortBinding(_mongoInternalPort, true)  // ALL 3 together to avoid port conflicts and stall         
             
             .WithImagePullPolicy(  PullPolicy.Missing)
@@ -35,9 +35,9 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
         TestLogger.LogInformation("MongoDbContainer started");
         
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
+      
         
-        _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!!
-        dbClient.GetDatabase(_dbName);  
+        dbClient.GetDatabase(NewDbName());  
     }
 
     public async Task DisposeAsync()
@@ -51,8 +51,9 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
     }
 
 
-    public string DbName()
-    {
+    public string NewDbName()
+    {   
+        _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!!
         return _dbName; 
     }
 }
