@@ -56,4 +56,9 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
         _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!!
         return _dbName; 
     }
+    
+    public string DbName()
+    {   
+        return _dbName; 
+    }
 }

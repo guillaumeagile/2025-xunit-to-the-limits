@@ -38,7 +38,7 @@ public class ZMyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mon
     {
         TestLogger.LogInformation("TestsWithContainers InitializeAsync");
         _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(), _mongoFixture.NewDbName());
-        TestLogger.LogInformation("MongoDbConnection dbName = " + _mongoFixture.NewDbName());
+        TestLogger.LogInformation("MongoDbConnection dbName = " + _mongoFixture.DbName());
         return Task.CompletedTask;
     }
 
