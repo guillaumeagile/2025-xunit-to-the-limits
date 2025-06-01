@@ -4,7 +4,7 @@ using _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers.source;
 using FluentResults;
 using StackExchange.Redis;
 
-namespace _2025_xunit_to_the_limits_src.T11_Redis_ToBenchmark.source;
+namespace _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark.source;
 
 public class RedisStorageAdapter<T>(RedisConnection redisConnection) : IStorageAdapter<T> where T : IDto
 {

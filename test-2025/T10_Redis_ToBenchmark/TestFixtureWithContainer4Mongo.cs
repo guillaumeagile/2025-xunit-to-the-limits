@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Testcontainers.Redis;
 
-namespace _2025_xunit_to_the_limits_src.T11_Redis_ToBenchmark;
+namespace _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark;
 
 public class TestFixtureWithContainer4Redis  : IAsyncLifetime    // <----- ⚠️ 
 {

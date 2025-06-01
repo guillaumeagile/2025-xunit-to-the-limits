@@ -1,10 +1,9 @@
-using _2025_xunit_to_the_limits_src.T11_Redis_ToBenchmark.noWay;
-using _2025_xunit_to_the_limits_src.T11_Redis_ToBenchmark.source;
+using _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark.noWay;
+using _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark.source;
 using Microsoft.Extensions.Logging;
-using Testcontainers.Redis;
 using Xunit.Abstractions;
 
-namespace _2025_xunit_to_the_limits_src.T11_Redis_ToBenchmark;
+namespace _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark;
 
 [Collection(nameof(TestFixtureWithContainer4Redis))]
 public class RedisTestsWithContainers : IClassFixture<TestFixtureWithContainer4Redis>, IAsyncLifetime
