@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers.source;
+namespace T8_Repositories_Adapters.source;
 
 public class MongoDbConnection
 {

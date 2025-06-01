@@ -1,10 +1,10 @@
 using System.Linq.Expressions;
 using System.Text.Json;
-using _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers.source;
 using FluentResults;
 using StackExchange.Redis;
+using T8_Repositories_Adapters.source;
 
-namespace _2025_xunit_to_the_limits_src.T10_Redis_ToBenchmark.source;
+namespace T8_Repositories_Adapters.sourceT10;
 
 public class RedisStorageAdapter<T>(RedisConnection redisConnection) : IStorageAdapter<T> where T : IDto
 {
