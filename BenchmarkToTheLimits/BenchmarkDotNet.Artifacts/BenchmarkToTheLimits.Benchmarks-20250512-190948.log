@@ -1,0 +1,257 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:IntermediateOutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/obj/Release/net8.0/" /p:OutDir="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0/" /p:OutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0/" in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8
+// command took 0.67 sec and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:IntermediateOutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/obj/Release/net8.0/" /p:OutDir="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0/" /p:OutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0/" --output "/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0/" in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8
+// command took 3.12 sec and exited with 0
+// ***** Done, took 00:00:03 (3.82 sec)   *****
+// Found 2 benchmarks:
+//   Benchmarks.WithMongoAsync: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.WithRedis: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// **************************
+// Benchmark: Benchmarks.WithMongoAsync: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 467e8afd-cc62-4a57-a2e8-849f8472d8e8.dll --anonymousPipes 116 117 --benchmarkName BenchmarkToTheLimits.Benchmarks.WithMongoAsync --job "IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 0 in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.14.0
+// Runtime=.NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: Job-DPPEID(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+[testcontainers.org 00:00:03.42] Connected to Docker:
+  Host: unix:///var/run/docker.sock
+  Server Version: 28.0.4
+  Kernel Version: 6.10.14-linuxkit
+  API Version: 1.48
+  Operating System: Docker Desktop
+  Total Memory: 7.65 GB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/guillaume/Library/Containers/com.docker.docker/Data/docker-cli.sock
+[testcontainers.org 00:00:03.46] Docker container d3c3085f1656 created
+[testcontainers.org 00:00:03.46] Start Docker container d3c3085f1656
+[testcontainers.org 00:00:04.54] Wait for Docker container d3c3085f1656 to complete readiness checks
+[testcontainers.org 00:00:04.55] Execute "redis-cli ping" at Docker container d3c3085f1656
+[testcontainers.org 00:00:04.61] Docker container d3c3085f1656 ready
+OverheadJitting  1: 1 op, 136834.00 ns, 136.8340 us/op
+WorkloadJitting  1: 1 op, 121435167.00 ns, 121.4352 ms/op
+
+WorkloadPilot    1: 2 op, 6571875.00 ns, 3.2859 ms/op
+WorkloadPilot    2: 3 op, 7679917.00 ns, 2.5600 ms/op
+WorkloadPilot    3: 4 op, 12459750.00 ns, 3.1149 ms/op
+WorkloadPilot    4: 5 op, 12072000.00 ns, 2.4144 ms/op
+WorkloadPilot    5: 6 op, 10016334.00 ns, 1.6694 ms/op
+WorkloadPilot    6: 7 op, 11607167.00 ns, 1.6582 ms/op
+WorkloadPilot    7: 8 op, 14545666.00 ns, 1.8182 ms/op
+WorkloadPilot    8: 9 op, 13064375.00 ns, 1.4516 ms/op
+WorkloadPilot    9: 10 op, 16525750.00 ns, 1.6526 ms/op
+WorkloadPilot   10: 11 op, 15476708.00 ns, 1.4070 ms/op
+WorkloadPilot   11: 12 op, 17329584.00 ns, 1.4441 ms/op
+WorkloadPilot   12: 13 op, 17735834.00 ns, 1.3643 ms/op
+WorkloadPilot   13: 14 op, 19497375.00 ns, 1.3927 ms/op
+WorkloadPilot   14: 15 op, 19731833.00 ns, 1.3155 ms/op
+WorkloadPilot   15: 16 op, 20904500.00 ns, 1.3065 ms/op
+WorkloadPilot   16: 32 op, 39490667.00 ns, 1.2341 ms/op
+WorkloadPilot   17: 64 op, 76396292.00 ns, 1.1937 ms/op
+WorkloadPilot   18: 128 op, 156650000.00 ns, 1.2238 ms/op
+WorkloadPilot   19: 256 op, 355819166.00 ns, 1.3899 ms/op
+WorkloadPilot   20: 512 op, 684058958.00 ns, 1.3361 ms/op
+
+WorkloadWarmup   1: 512 op, 723044750.00 ns, 1.4122 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 512 op, 663581000.00 ns, 1.2961 ms/op
+WorkloadActual   2: 512 op, 642100375.00 ns, 1.2541 ms/op
+WorkloadActual   3: 512 op, 597108625.00 ns, 1.1662 ms/op
+WorkloadActual   4: 512 op, 584688875.00 ns, 1.1420 ms/op
+WorkloadActual   5: 512 op, 599918750.00 ns, 1.1717 ms/op
+WorkloadActual   6: 512 op, 611125083.00 ns, 1.1936 ms/op
+WorkloadActual   7: 512 op, 581936625.00 ns, 1.1366 ms/op
+WorkloadActual   8: 512 op, 638515708.00 ns, 1.2471 ms/op
+WorkloadActual   9: 512 op, 617170000.00 ns, 1.2054 ms/op
+WorkloadActual  10: 512 op, 611800459.00 ns, 1.1949 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 512 op, 663581000.00 ns, 1.2961 ms/op
+WorkloadResult   2: 512 op, 642100375.00 ns, 1.2541 ms/op
+WorkloadResult   3: 512 op, 597108625.00 ns, 1.1662 ms/op
+WorkloadResult   4: 512 op, 584688875.00 ns, 1.1420 ms/op
+WorkloadResult   5: 512 op, 599918750.00 ns, 1.1717 ms/op
+WorkloadResult   6: 512 op, 611125083.00 ns, 1.1936 ms/op
+WorkloadResult   7: 512 op, 581936625.00 ns, 1.1366 ms/op
+WorkloadResult   8: 512 op, 638515708.00 ns, 1.2471 ms/op
+WorkloadResult   9: 512 op, 617170000.00 ns, 1.2054 ms/op
+WorkloadResult  10: 512 op, 611800459.00 ns, 1.1949 ms/op
+
+[testcontainers.org 00:00:13.50] Delete Docker container d3c3085f1656
+// AfterAll
+// Benchmark Process 64329 has exited with code 0.
+
+Mean = 1.201 ms, StdErr = 0.016 ms (1.35%), N = 10, StdDev = 0.051 ms
+Min = 1.137 ms, Q1 = 1.168 ms, Median = 1.194 ms, Q3 = 1.237 ms, Max = 1.296 ms
+IQR = 0.069 ms, LowerFence = 1.064 ms, UpperFence = 1.340 ms
+ConfidenceInterval = [1.123 ms; 1.279 ms] (CI 99.9%), Margin = 0.078 ms (6.47% of Mean)
+Skewness = 0.43, Kurtosis = 1.81, MValue = 2
+
+// ** Remained 1 (50,0 %) benchmark(s) to run. Estimated finish 2025-05-12 19:10 (0h 0m from now) **
+// **************************
+// Benchmark: Benchmarks.WithRedis: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 467e8afd-cc62-4a57-a2e8-849f8472d8e8.dll --anonymousPipes 118 119 --benchmarkName BenchmarkToTheLimits.Benchmarks.WithRedis --job "IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 1 in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/467e8afd-cc62-4a57-a2e8-849f8472d8e8/bin/Release/net8.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.14.0
+// Runtime=.NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: Job-RPZKXI(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+[testcontainers.org 00:00:03.44] Connected to Docker:
+  Host: unix:///var/run/docker.sock
+  Server Version: 28.0.4
+  Kernel Version: 6.10.14-linuxkit
+  API Version: 1.48
+  Operating System: Docker Desktop
+  Total Memory: 7.65 GB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/guillaume/Library/Containers/com.docker.docker/Data/docker-cli.sock
+[testcontainers.org 00:00:03.48] Docker container 0cb39536b9ae created
+[testcontainers.org 00:00:03.48] Start Docker container 0cb39536b9ae
+[testcontainers.org 00:00:03.55] Wait for Docker container 0cb39536b9ae to complete readiness checks
+[testcontainers.org 00:00:03.56] Execute "redis-cli ping" at Docker container 0cb39536b9ae
+[testcontainers.org 00:00:03.59] Docker container 0cb39536b9ae ready
+OverheadJitting  1: 1 op, 117792.00 ns, 117.7920 us/op
+WorkloadJitting  1: 1 op, 57608458.00 ns, 57.6085 ms/op
+
+WorkloadPilot    1: 2 op, 4406625.00 ns, 2.2033 ms/op
+WorkloadPilot    2: 3 op, 5742083.00 ns, 1.9140 ms/op
+WorkloadPilot    3: 4 op, 6658500.00 ns, 1.6646 ms/op
+WorkloadPilot    4: 5 op, 8067250.00 ns, 1.6135 ms/op
+WorkloadPilot    5: 6 op, 10174292.00 ns, 1.6957 ms/op
+WorkloadPilot    6: 7 op, 17301958.00 ns, 2.4717 ms/op
+WorkloadPilot    7: 8 op, 13323292.00 ns, 1.6654 ms/op
+WorkloadPilot    8: 9 op, 15054542.00 ns, 1.6727 ms/op
+WorkloadPilot    9: 10 op, 24716791.00 ns, 2.4717 ms/op
+WorkloadPilot   10: 11 op, 15483250.00 ns, 1.4076 ms/op
+WorkloadPilot   11: 12 op, 20449625.00 ns, 1.7041 ms/op
+WorkloadPilot   12: 13 op, 22369375.00 ns, 1.7207 ms/op
+WorkloadPilot   13: 14 op, 21414291.00 ns, 1.5296 ms/op
+WorkloadPilot   14: 15 op, 22587250.00 ns, 1.5058 ms/op
+WorkloadPilot   15: 16 op, 24209625.00 ns, 1.5131 ms/op
+WorkloadPilot   16: 32 op, 66702292.00 ns, 2.0844 ms/op
+WorkloadPilot   17: 64 op, 122194125.00 ns, 1.9093 ms/op
+WorkloadPilot   18: 128 op, 266486000.00 ns, 2.0819 ms/op
+WorkloadPilot   19: 256 op, 467220125.00 ns, 1.8251 ms/op
+WorkloadPilot   20: 512 op, 1001859667.00 ns, 1.9568 ms/op
+
+WorkloadWarmup   1: 512 op, 946279291.00 ns, 1.8482 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 512 op, 931400000.00 ns, 1.8191 ms/op
+WorkloadActual   2: 512 op, 913877750.00 ns, 1.7849 ms/op
+WorkloadActual   3: 512 op, 1049061917.00 ns, 2.0489 ms/op
+WorkloadActual   4: 512 op, 891785250.00 ns, 1.7418 ms/op
+WorkloadActual   5: 512 op, 780106416.00 ns, 1.5236 ms/op
+WorkloadActual   6: 512 op, 765635417.00 ns, 1.4954 ms/op
+WorkloadActual   7: 512 op, 769950375.00 ns, 1.5038 ms/op
+WorkloadActual   8: 512 op, 826326125.00 ns, 1.6139 ms/op
+WorkloadActual   9: 512 op, 778549792.00 ns, 1.5206 ms/op
+WorkloadActual  10: 512 op, 787097000.00 ns, 1.5373 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 512 op, 931400000.00 ns, 1.8191 ms/op
+WorkloadResult   2: 512 op, 913877750.00 ns, 1.7849 ms/op
+WorkloadResult   3: 512 op, 1049061917.00 ns, 2.0489 ms/op
+WorkloadResult   4: 512 op, 891785250.00 ns, 1.7418 ms/op
+WorkloadResult   5: 512 op, 780106416.00 ns, 1.5236 ms/op
+WorkloadResult   6: 512 op, 765635417.00 ns, 1.4954 ms/op
+WorkloadResult   7: 512 op, 769950375.00 ns, 1.5038 ms/op
+WorkloadResult   8: 512 op, 826326125.00 ns, 1.6139 ms/op
+WorkloadResult   9: 512 op, 778549792.00 ns, 1.5206 ms/op
+WorkloadResult  10: 512 op, 787097000.00 ns, 1.5373 ms/op
+
+[testcontainers.org 00:00:16.31] Delete Docker container 0cb39536b9ae
+// AfterAll
+// Benchmark Process 64347 has exited with code 0.
+
+Mean = 1.659 ms, StdErr = 0.058 ms (3.51%), N = 10, StdDev = 0.184 ms
+Min = 1.495 ms, Q1 = 1.521 ms, Median = 1.576 ms, Q3 = 1.774 ms, Max = 2.049 ms
+IQR = 0.253 ms, LowerFence = 1.142 ms, UpperFence = 2.153 ms
+ConfidenceInterval = [1.380 ms; 1.938 ms] (CI 99.9%), Margin = 0.279 ms (16.79% of Mean)
+Skewness = 0.81, Kurtosis = 2.28, MValue = 2
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2025-05-12 19:10 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.csv
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report-github.md
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.html
+
+// * Detailed results *
+Benchmarks.WithMongoAsync: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD; GC = Concurrent Workstation
+Mean = 1.201 ms, StdErr = 0.016 ms (1.35%), N = 10, StdDev = 0.051 ms
+Min = 1.137 ms, Q1 = 1.168 ms, Median = 1.194 ms, Q3 = 1.237 ms, Max = 1.296 ms
+IQR = 0.069 ms, LowerFence = 1.064 ms, UpperFence = 1.340 ms
+ConfidenceInterval = [1.123 ms; 1.279 ms] (CI 99.9%), Margin = 0.078 ms (6.47% of Mean)
+Skewness = 0.43, Kurtosis = 1.81, MValue = 2
+-------------------- Histogram --------------------
+[1.134 ms ; 1.197 ms) | @@@@@@
+[1.197 ms ; 1.261 ms) | @@@
+[1.261 ms ; 1.327 ms) | @
+---------------------------------------------------
+
+Benchmarks.WithRedis: Job-JWZTWV(IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD; GC = Concurrent Workstation
+Mean = 1.659 ms, StdErr = 0.058 ms (3.51%), N = 10, StdDev = 0.184 ms
+Min = 1.495 ms, Q1 = 1.521 ms, Median = 1.576 ms, Q3 = 1.774 ms, Max = 2.049 ms
+IQR = 0.253 ms, LowerFence = 1.142 ms, UpperFence = 2.153 ms
+ConfidenceInterval = [1.380 ms; 1.938 ms] (CI 99.9%), Margin = 0.279 ms (16.79% of Mean)
+Skewness = 0.81, Kurtosis = 2.28, MValue = 2
+-------------------- Histogram --------------------
+[1.442 ms ; 1.667 ms) | @@@@@@
+[1.667 ms ; 1.893 ms) | @@@
+[1.893 ms ; 2.161 ms) | @
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.14.0, macOS Sonoma 14.7.5 (23H527) [Darwin 23.6.0]
+Apple M3 Max, 1 CPU, 14 logical and 14 physical cores
+.NET SDK 8.0.405
+  [Host]     : .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+  Job-JWZTWV : .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+
+IterationCount=10  LaunchCount=1  WarmupCount=1  
+
+| Method         | Mean     | Error     | StdDev    | Min      | Max      | Median   |
+|--------------- |---------:|----------:|----------:|---------:|---------:|---------:|
+| WithMongoAsync | 1.201 ms | 0.0777 ms | 0.0514 ms | 1.137 ms | 1.296 ms | 1.194 ms |
+| WithRedis      | 1.659 ms | 0.2786 ms | 0.1843 ms | 1.495 ms | 2.049 ms | 1.576 ms |
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  Min    : Minimum
+  Max    : Maximum
+  Median : Value separating the higher half of all measurements (50th percentile)
+  1 ms   : 1 Millisecond (0.001 sec)
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:30 (30.51 sec), executed benchmarks: 2
+
+Global total time: 00:00:34 (34.52 sec), executed benchmarks: 2
+// * Artifacts cleanup *
+Artifacts cleanup is finished

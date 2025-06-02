@@ -1,0 +1,60 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:IntermediateOutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/87817519-40d2-4752-aad7-d1b6e32e86f9/obj/Release/net8.0/" /p:OutDir="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/87817519-40d2-4752-aad7-d1b6e32e86f9/bin/Release/net8.0/" /p:OutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/87817519-40d2-4752-aad7-d1b6e32e86f9/bin/Release/net8.0/" in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/87817519-40d2-4752-aad7-d1b6e32e86f9
+// command took longer than the timeout: 120s. Killing the process tree!
+// ***** Done, took 00:02:00 (120.14 sec)   *****
+// Found 2 benchmarks:
+//   Benchmarks.WithMongoAsync: Job-GZVKPU(IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.WithRedis: Job-GZVKPU(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// Build Error: Standard output: 
+   Determining projects to restore... 
+ Standard error: 
+ The configured timeout 00:02:00 was reached!
+
+// BenchmarkDotNet has failed to build the auto-generated boilerplate code.
+// It can be found in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/87817519-40d2-4752-aad7-d1b6e32e86f9
+// Please follow the troubleshooting guide: https://benchmarkdotnet.org/articles/guides/troubleshooting.html
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2025-05-12 21:25 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.csv
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report-github.md
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.html
+
+// * Detailed results *
+Benchmarks.WithMongoAsync: Job-GZVKPU(IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = ; GC = 
+There are not any results runs
+
+// * Summary *
+
+BenchmarkDotNet v0.14.0, macOS Sonoma 14.7.5 (23H527) [Darwin 23.6.0]
+Apple M3 Max, 1 CPU, 14 logical and 14 physical cores
+.NET SDK 8.0.405
+  [Host] : .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+
+IterationCount=10  LaunchCount=1  WarmupCount=1  
+
+| Method         | Mean | Error |
+|--------------- |-----:|------:|
+| WithMongoAsync |   NA |    NA |
+
+Benchmarks with issues:
+  Benchmarks.WithMongoAsync: Job-GZVKPU(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// * Legends *
+  Mean  : Arithmetic mean of all measurements
+  Error : Half of 99.9% confidence interval
+  1 ns  : 1 Nanosecond (0.000000001 sec)
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:00 (0.01 sec), executed benchmarks: 0
+
+Global total time: 00:02:00 (120.37 sec), executed benchmarks: 0
+// * Artifacts cleanup *
+Artifacts cleanup is finished

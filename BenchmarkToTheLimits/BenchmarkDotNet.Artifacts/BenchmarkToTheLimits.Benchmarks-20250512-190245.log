@@ -1,0 +1,216 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:IntermediateOutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/obj/Release/net8.0/" /p:OutDir="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0/" /p:OutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0/" in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c
+// command took 0.92 sec and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true /p:IntermediateOutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/obj/Release/net8.0/" /p:OutDir="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0/" /p:OutputPath="/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0/" --output "/Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0/" in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c
+// command took 3.19 sec and exited with 0
+// ***** Done, took 00:00:04 (4.16 sec)   *****
+// Found 2 benchmarks:
+//   Benchmarks.WithMongoAsync: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.WithRedis: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// **************************
+// Benchmark: Benchmarks.WithMongoAsync: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet de10bef2-444b-4dc2-b963-c5bd6ba35b6c.dll --anonymousPipes 116 117 --benchmarkName BenchmarkToTheLimits.Benchmarks.WithMongoAsync --job "IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 0 in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.14.0
+// Runtime=.NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: Job-AYLPEM(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+[testcontainers.org 00:00:03.45] Connected to Docker:
+  Host: unix:///var/run/docker.sock
+  Server Version: 28.0.4
+  Kernel Version: 6.10.14-linuxkit
+  API Version: 1.48
+  Operating System: Docker Desktop
+  Total Memory: 7.65 GB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/guillaume/Library/Containers/com.docker.docker/Data/docker-cli.sock
+[testcontainers.org 00:00:03.49] Docker container edbfd1f7b30b created
+[testcontainers.org 00:00:03.50] Start Docker container edbfd1f7b30b
+[testcontainers.org 00:00:04.57] Wait for Docker container edbfd1f7b30b to complete readiness checks
+[testcontainers.org 00:00:04.58] Execute "redis-cli ping" at Docker container edbfd1f7b30b
+[testcontainers.org 00:00:04.64] Docker container edbfd1f7b30b ready
+OverheadJitting  1: 1 op, 207542.00 ns, 207.5420 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.source.MongoStorageAdapter`1..ctor(MongoDbConnection mongoDbConnection) in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/2025-xunit-to-the-limits-src/T10_AsyncCollections_TestContainers/source/MongoStorageAdapter.cs:line 9
+   at _2025_xunit_to_the_limits_src.T10_AsyncCollections_TestContainers.MyTestsWithContainers.SaveSomeDto_ToMongoDB() in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/2025-xunit-to-the-limits-src/T10_AsyncCollections_TestContainers/MyTestsWithContainers.cs:line 44
+   at BenchmarkToTheLimits.Benchmarks.WithMongoAsync() in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/Benchmarks.cs:line 23
+   at BenchmarkDotNet.Helpers.AwaitHelper.GetResult(Task task)
+   at BenchmarkDotNet.Autogenerated.Runnable_0.<.ctor>b__3_2() in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/de10bef2-444b-4dc2-b963-c5bd6ba35b6c.notcs:line 199
+   at BenchmarkDotNet.Autogenerated.Runnable_0.WorkloadActionNoUnroll(Int64 invokeCount) in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/de10bef2-444b-4dc2-b963-c5bd6ba35b6c.notcs:line 313
+   at BenchmarkDotNet.Engines.Engine.Measure(Action`1 action, Int64 invokeCount)
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_0.Run(IHost host, String benchmarkName) in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/de10bef2-444b-4dc2-b963-c5bd6ba35b6c.notcs:line 178
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/de10bef2-444b-4dc2-b963-c5bd6ba35b6c.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 63784 has exited with code 255.
+
+// ** Remained 1 (50,0 %) benchmark(s) to run. Estimated finish 2025-05-12 19:02 (0h 0m from now) **
+// **************************
+// Benchmark: Benchmarks.WithRedis: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet de10bef2-444b-4dc2-b963-c5bd6ba35b6c.dll --anonymousPipes 116 117 --benchmarkName BenchmarkToTheLimits.Benchmarks.WithRedis --job "IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 1 in /Users/guillaume/SOURCES/2025-xunit-to-the-limits/BenchmarkToTheLimits/bin/Release/net8.0/de10bef2-444b-4dc2-b963-c5bd6ba35b6c/bin/Release/net8.0
+// Failed to set up high priority (Permission denied). In order to run benchmarks with high priority, make sure you have the right permissions.
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.14.0
+// Runtime=.NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AdvSIMD,AES,CRC32,DP,RDM,SHA1,SHA256 VectorSize=128
+// Job: Job-VGBKPM(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+[testcontainers.org 00:00:03.45] Connected to Docker:
+  Host: unix:///var/run/docker.sock
+  Server Version: 28.0.4
+  Kernel Version: 6.10.14-linuxkit
+  API Version: 1.48
+  Operating System: Docker Desktop
+  Total Memory: 7.65 GB
+  Labels: 
+    com.docker.desktop.address=unix:///Users/guillaume/Library/Containers/com.docker.docker/Data/docker-cli.sock
+[testcontainers.org 00:00:03.49] Docker container 7335665b7e74 created
+[testcontainers.org 00:00:03.49] Start Docker container 7335665b7e74
+[testcontainers.org 00:00:03.56] Wait for Docker container 7335665b7e74 to complete readiness checks
+[testcontainers.org 00:00:03.57] Execute "redis-cli ping" at Docker container 7335665b7e74
+[testcontainers.org 00:00:03.61] Docker container 7335665b7e74 ready
+OverheadJitting  1: 1 op, 109000.00 ns, 109.0000 us/op
+WorkloadJitting  1: 1 op, 58027625.00 ns, 58.0276 ms/op
+
+WorkloadPilot    1: 2 op, 4401708.00 ns, 2.2009 ms/op
+WorkloadPilot    2: 3 op, 6327750.00 ns, 2.1093 ms/op
+WorkloadPilot    3: 4 op, 5790292.00 ns, 1.4476 ms/op
+WorkloadPilot    4: 5 op, 8129083.00 ns, 1.6258 ms/op
+WorkloadPilot    5: 6 op, 11706833.00 ns, 1.9511 ms/op
+WorkloadPilot    6: 7 op, 10731542.00 ns, 1.5331 ms/op
+WorkloadPilot    7: 8 op, 13450375.00 ns, 1.6813 ms/op
+WorkloadPilot    8: 9 op, 15107334.00 ns, 1.6786 ms/op
+WorkloadPilot    9: 10 op, 14047709.00 ns, 1.4048 ms/op
+WorkloadPilot   10: 11 op, 18167875.00 ns, 1.6516 ms/op
+WorkloadPilot   11: 12 op, 15653750.00 ns, 1.3045 ms/op
+WorkloadPilot   12: 13 op, 20071625.00 ns, 1.5440 ms/op
+WorkloadPilot   13: 14 op, 27892792.00 ns, 1.9923 ms/op
+WorkloadPilot   14: 15 op, 33955625.00 ns, 2.2637 ms/op
+WorkloadPilot   15: 16 op, 21894500.00 ns, 1.3684 ms/op
+WorkloadPilot   16: 32 op, 66968583.00 ns, 2.0928 ms/op
+WorkloadPilot   17: 64 op, 135144834.00 ns, 2.1116 ms/op
+WorkloadPilot   18: 128 op, 265545416.00 ns, 2.0746 ms/op
+WorkloadPilot   19: 256 op, 466529625.00 ns, 1.8224 ms/op
+WorkloadPilot   20: 512 op, 1050050958.00 ns, 2.0509 ms/op
+
+WorkloadWarmup   1: 512 op, 972727333.00 ns, 1.8999 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 512 op, 951749958.00 ns, 1.8589 ms/op
+WorkloadActual   2: 512 op, 815618417.00 ns, 1.5930 ms/op
+WorkloadActual   3: 512 op, 877379459.00 ns, 1.7136 ms/op
+WorkloadActual   4: 512 op, 946129875.00 ns, 1.8479 ms/op
+WorkloadActual   5: 512 op, 755931834.00 ns, 1.4764 ms/op
+WorkloadActual   6: 512 op, 755575584.00 ns, 1.4757 ms/op
+WorkloadActual   7: 512 op, 816392333.00 ns, 1.5945 ms/op
+WorkloadActual   8: 512 op, 814479625.00 ns, 1.5908 ms/op
+WorkloadActual   9: 512 op, 851064125.00 ns, 1.6622 ms/op
+WorkloadActual  10: 512 op, 804655791.00 ns, 1.5716 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 512 op, 951749958.00 ns, 1.8589 ms/op
+WorkloadResult   2: 512 op, 815618417.00 ns, 1.5930 ms/op
+WorkloadResult   3: 512 op, 877379459.00 ns, 1.7136 ms/op
+WorkloadResult   4: 512 op, 946129875.00 ns, 1.8479 ms/op
+WorkloadResult   5: 512 op, 755931834.00 ns, 1.4764 ms/op
+WorkloadResult   6: 512 op, 755575584.00 ns, 1.4757 ms/op
+WorkloadResult   7: 512 op, 816392333.00 ns, 1.5945 ms/op
+WorkloadResult   8: 512 op, 814479625.00 ns, 1.5908 ms/op
+WorkloadResult   9: 512 op, 851064125.00 ns, 1.6622 ms/op
+WorkloadResult  10: 512 op, 804655791.00 ns, 1.5716 ms/op
+
+[testcontainers.org 00:00:16.42] Delete Docker container 7335665b7e74
+// AfterAll
+// Benchmark Process 63796 has exited with code 0.
+
+Mean = 1.638 ms, StdErr = 0.042 ms (2.59%), N = 10, StdDev = 0.134 ms
+Min = 1.476 ms, Q1 = 1.576 ms, Median = 1.594 ms, Q3 = 1.701 ms, Max = 1.859 ms
+IQR = 0.124 ms, LowerFence = 1.390 ms, UpperFence = 1.887 ms
+ConfidenceInterval = [1.436 ms; 1.841 ms] (CI 99.9%), Margin = 0.203 ms (12.39% of Mean)
+Skewness = 0.46, Kurtosis = 1.77, MValue = 2.67
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2025-05-12 19:03 (0h 0m from now) **
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.csv
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report-github.md
+  BenchmarkDotNet.Artifacts/results/BenchmarkToTheLimits.Benchmarks-report.html
+
+// * Detailed results *
+Benchmarks.WithMongoAsync: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.WithRedis: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD; GC = Concurrent Workstation
+Mean = 1.638 ms, StdErr = 0.042 ms (2.59%), N = 10, StdDev = 0.134 ms
+Min = 1.476 ms, Q1 = 1.576 ms, Median = 1.594 ms, Q3 = 1.701 ms, Max = 1.859 ms
+IQR = 0.124 ms, LowerFence = 1.390 ms, UpperFence = 1.887 ms
+ConfidenceInterval = [1.436 ms; 1.841 ms] (CI 99.9%), Margin = 0.203 ms (12.39% of Mean)
+Skewness = 0.46, Kurtosis = 1.77, MValue = 2.67
+-------------------- Histogram --------------------
+[1.453 ms ; 1.617 ms) | @@@@@@
+[1.617 ms ; 1.704 ms) | @
+[1.704 ms ; 1.868 ms) | @@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet v0.14.0, macOS Sonoma 14.7.5 (23H527) [Darwin 23.6.0]
+Apple M3 Max, 1 CPU, 14 logical and 14 physical cores
+.NET SDK 8.0.405
+  [Host]     : .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+  Job-MZHLKQ : .NET 8.0.12 (8.0.1224.60305), Arm64 RyuJIT AdvSIMD
+
+IterationCount=10  LaunchCount=1  WarmupCount=1  
+
+| Method         | Mean     | Error     | StdDev    | Min      | Max      | Median   |
+|--------------- |---------:|----------:|----------:|---------:|---------:|---------:|
+| WithMongoAsync |       NA |        NA |        NA |       NA |       NA |       NA |
+| WithRedis      | 1.638 ms | 0.2029 ms | 0.1342 ms | 1.476 ms | 1.859 ms | 1.594 ms |
+
+Benchmarks with issues:
+  Benchmarks.WithMongoAsync: Job-MZHLKQ(IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// * Legends *
+  Mean   : Arithmetic mean of all measurements
+  Error  : Half of 99.9% confidence interval
+  StdDev : Standard deviation of all measurements
+  Min    : Minimum
+  Max    : Maximum
+  Median : Value separating the higher half of all measurements (50th percentile)
+  1 ms   : 1 Millisecond (0.001 sec)
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:21 (21.65 sec), executed benchmarks: 2
+
+Global total time: 00:00:26 (26.02 sec), executed benchmarks: 2
+// * Artifacts cleanup *
+Artifacts cleanup is finished
