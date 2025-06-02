@@ -11,6 +11,7 @@ public class MyWebAppFactory : WebApplicationFactory<T9webAPI.Program>
 {
     private FakeStorageAdapter<SomeDto> _fakeStorageAdapter;
 
+    // to keep track of the adapter being injected
     public FakeStorageAdapter<SomeDto> FakeStorageAdapter => _fakeStorageAdapter;
 
     //THIS IS A MAJOR IMPROVEMENT
@@ -19,7 +20,7 @@ public class MyWebAppFactory : WebApplicationFactory<T9webAPI.Program>
         builder.ConfigureTestServices(svc =>
         {
             _fakeStorageAdapter = new FakeStorageAdapter<SomeDto>();
-            svc.AddTransient<IStorageAdapter<SomeDto>>(sp => _fakeStorageAdapter);
+            svc.AddSingleton<IStorageAdapter<SomeDto>>(sp => _fakeStorageAdapter);
         });
     }
 }
