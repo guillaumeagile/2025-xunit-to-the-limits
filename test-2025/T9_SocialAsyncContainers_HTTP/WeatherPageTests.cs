@@ -1,6 +1,8 @@
 using System.Text.Json;
 using FluentAssertions;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Playwright;
+using T8_Repositories_Adapters.source;
 
 
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
@@ -20,6 +22,7 @@ public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyn
         _browser = fixture.Browser;
          waf = new MyWebAppFactory();
         waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
+        waf.StartServer();
     }
     
     // DISCLAIMER : the code given in release note preview 4 is just CRAP
@@ -42,10 +45,39 @@ public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyn
         json[0].GetProperty("temperatureC").GetInt32().Should().BeInRange(-20, 55);
         json[0].GetProperty("temperatureF").GetInt32().Should().BeGreaterThan(0);
     }
+    
+    [Fact]
+    public async Task CallRouteGetById()
+    {
+        //ARRANGE the data in the storage
+      // var storageAdapter =  waf.Services.GetService(typeof(IStorageAdapter<SomeDto>)); boooooooh...  NULL :(
+      var storageAdapter = waf.FakeStorageAdapter; 
+       
+        storageAdapter.Should().NotBeNull();
+        var someDto = new SomeDto("2", "Foo", 20);
+        await ((FakeStorageAdapter<SomeDto>)storageAdapter).InsertOrUpdateAsync(someDto, CancellationToken.None);
+        
+        //ARRANGE the http call
+        var weatherPath = waf.ClientOptions.BaseAddress.ToString() + "stored/2"  ;
+        var ctx = await _playwright.APIRequest.NewContextAsync();
+        
+        //ACT
+        var response = await ctx.GetAsync(weatherPath);
+    
+        // ASSERT
+        response.Ok.Should().BeTrue();
+        var json = (await response.JsonAsync())
+            .Value
+            .Should().BeOfType<JsonElement>()
+            .Subject;
+        // fast compare: check if the json can be deserialized to the same object
+        var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
+        deserializedDto.Should().BeEquivalentTo(someDto);
+        
+    }
 
     public Task InitializeAsync()
     {
-        waf.StartServer(); // what???? no async !?
         return Task.CompletedTask;
     }
 

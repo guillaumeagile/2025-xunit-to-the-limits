@@ -9,15 +9,17 @@ namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
 public class MyWebAppFactory : WebApplicationFactory<T9webAPI.Program>
 {
-    
+    private FakeStorageAdapter<SomeDto> _fakeStorageAdapter;
+
+    public FakeStorageAdapter<SomeDto> FakeStorageAdapter => _fakeStorageAdapter;
+
     //THIS IS A MAJOR IMPROVEMENT
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureTestServices(svc =>
         {
-            //FakeStorageAdapter<T> : IStorageAdapter<T> 
-            svc.AddTransient<IStorageAdapter<SomeDto>, FakeStorageAdapter<SomeDto>>();
-   //         svc.AddTransient<IWeatherService, TestWeatherService>();
+            _fakeStorageAdapter = new FakeStorageAdapter<SomeDto>();
+            svc.AddTransient<IStorageAdapter<SomeDto>>(sp => _fakeStorageAdapter);
         });
     }
 }

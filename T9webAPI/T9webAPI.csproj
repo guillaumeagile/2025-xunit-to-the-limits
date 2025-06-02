@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.4.25258.110"/>
         <PackageReference Include="Scalar.AspNetCore" Version="2.3.1" />
     </ItemGroup>
@@ -16,6 +17,10 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\T8_Repositories_Adapters\T8_Repositories_Adapters.csproj" />
     </ItemGroup>
 
 </Project>
