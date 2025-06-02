@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using T8_Repositories_Adapters.source;
 
 
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
@@ -13,6 +15,8 @@ public class MyWebAppFactory : WebApplicationFactory<T9webAPI.Program>
     {
         builder.ConfigureTestServices(svc =>
         {
+            //FakeStorageAdapter<T> : IStorageAdapter<T> 
+            svc.AddTransient<IStorageAdapter<SomeDto>, FakeStorageAdapter<SomeDto>>();
    //         svc.AddTransient<IWeatherService, TestWeatherService>();
         });
     }

@@ -76,7 +76,3 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         return Task.CompletedTask;
     }
 }
-
-public record SomeDto(string Id, string Name, int Age) : IDto
-{
-}

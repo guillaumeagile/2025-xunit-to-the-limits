@@ -21,11 +21,9 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
     {
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
-         
             .WithCleanUp(true)
             //.WithReuse(true)    // BE CAREFUL !!!! NO MORE ISOLATION
-        //    .WithPortBinding(_mongoInternalPort, true)  // ALL 3 together to avoid port conflicts and stall         
-            
+        //    .WithPortBinding(_mongoInternalPort, true)  // ALL 3 together to avoid port conflicts and stall
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
        
@@ -35,7 +33,6 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
         TestLogger.LogInformation("MongoDbContainer started");
         
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
-      
         
         dbClient.GetDatabase(NewDbName());  
     }
