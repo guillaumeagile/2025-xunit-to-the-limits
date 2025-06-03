@@ -15,7 +15,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     {
         fixture.SetOutputToLogger(outputHelper);
         _fixture = fixture;
-        _filePath = Path.Combine(Directory.GetCurrentDirectory(), "2025-xunit-to-the-limits-src.dll");
+        _filePath = Path.Combine(Directory.GetCurrentDirectory(), "test-2025.dll");
         fixture.TestLogger.LogInformation("SimpleAsyncTest  constructed");
     }
 
