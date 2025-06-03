@@ -44,7 +44,7 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
         //ARRANGE the data in the storage
         IStorageAdapter<SomeDto> storageAdapter = _waf.MongoStorageAdapter;
         storageAdapter.Should().NotBeNull();
-        var someDto = new SomeDto("", "Foobar", 42);   //try with empty string as ID
+        var someDto = new SomeDto("2", "Foobar", 42);   //try with empty string as ID
         var resultInsertOrUpdate = await storageAdapter.InsertOrUpdateAsync(someDto, CancellationToken.None);
         //resultInsertOrUpdate.IsSuccess.Should().BeTrue();
         

@@ -25,6 +25,7 @@ public class PlaywrightFixtureWithContainers : PlaywrightFixture
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
             .WithCleanUp(true)
+            .WithPortBinding(27017 , true) 
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
        
