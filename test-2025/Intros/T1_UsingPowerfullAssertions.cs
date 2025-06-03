@@ -10,8 +10,6 @@ public class T1_UsingPowerfullAssertions
         var s = "earth is flat";
         Assert.Equal("earth is flat", s);
     }
-
-    
     
     
     [Fact]
@@ -44,12 +42,10 @@ public class T1_UsingPowerfullAssertions
             .And.HaveCount(4)
             .And.ContainInOrder(new[] { 2, 5 })
             .And.ContainItemsAssignableTo<int>();
-
-
+        
         collection.Should().HaveCount(c => c > 3)
             .And.OnlyHaveUniqueItems();
-
-
+        
         collection.Should().StartWith(1);
         collection.Should().StartWith(new[] { 1, 2 });
         collection.Should().EndWith(8);
@@ -104,7 +100,7 @@ public class T1_UsingPowerfullAssertions
     }
 
     [Fact]
-    public void LogicIsMean()
+    public void PleaseNoLogicInTests()
     {
         var func = (int a, int b) => a + b;
 

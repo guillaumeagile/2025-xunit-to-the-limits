@@ -18,8 +18,9 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
         _playwright = fixture.PlaywrightInstance;
         fixture.TestLogger = outputHelper.ToLogger<WithContainersApiTests>();
         
-        // fait le register service de l'adapter avec la connexion string issue du container
+        // je dois faire le register service de l'adapter avec la connexion string issue du container 
         // obligé de le faire dans InitializeAsync car sinon c'est trop tôt
+        
         _fixture = fixture;
     }
 
@@ -27,12 +28,12 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
     {
         var mongoDbConnection = new MongoDbConnection(_fixture.DbConnectionString(), _fixture.NewDbName());
         _waf = new WafWithMongoAdapter(mongoDbConnection);  
-        // voila, le WAF est connecté au container !
+        // et voila, le WAF est connecté au container !
         
         _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
-        _waf.StartServer(); //toujours pas de StartAsync :(
+        _waf.StartServer(); // toujours pas de StartAsync :(
         
-        //voila, aucune infrastructure requise pour lancer l'API et sa base de données :)
+        //BENEFICE: aucune infrastructure requise pour lancer l'API et sa base de données :)
         
         return Task.CompletedTask;
     }
