@@ -36,7 +36,7 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
         var sut = new SutClassAsync(_fixture.TestLogger);
         _fixture.TestLogger.LogInformation("begin ExecuteAsync test");
         sut.ASyncCompute(_filePath);
-        _fixture.TestLogger.LogInformation("finished ExecuteAsync test");
+        _fixture.TestLogger.LogInformation("💥💥💥  finished ExecuteAsync test");
     }
 
 
@@ -86,7 +86,7 @@ public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
 
     public SimpleSyncLifeTimeWithLoggerFixture()
     {
-        TestLogger.LogWarning("this is the SETUP");   // WARNING ! you will never see this
+        TestLogger.LogWarning("this is the SETUP of the fixture");   // WARNING ! you will never see this
         TestableValue = 42;
     }
 
@@ -94,6 +94,6 @@ public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
     public void Dispose()
     {
         TestableValue = 0;
-        TestLogger.LogCritical("this is the TEARDOW");
+        TestLogger.LogCritical("this is the TEARDOW of the fixture");
     }
 }

@@ -10,7 +10,7 @@ public class SimpleSyncLifeTimeFixture : IDisposable
 
     public SimpleSyncLifeTimeFixture()
     {
-        Console.WriteLine("this is the SETUP");
+        Console.WriteLine("this is the SETUP of the fixture");
         TestableValue = 42;
         Uid = Ulid.NewUlid().ToString();
     }
@@ -19,6 +19,6 @@ public class SimpleSyncLifeTimeFixture : IDisposable
     public void Dispose()
     {
         TestableValue = 0;
-        Console.WriteLine("this is the TEARDOW");
+        Console.WriteLine("this is the TEARDOW of the fixture");
     }
 }
