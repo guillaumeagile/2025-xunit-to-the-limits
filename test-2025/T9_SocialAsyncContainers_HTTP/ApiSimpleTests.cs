@@ -3,14 +3,16 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Playwright;
 using T8_Repositories_Adapters.source;
-
-
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
-[Collection(nameof(PlaywrightFixture))]
-public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncLifetime
+// public class ApiSimpleTess : PageTest { ... }
+
+
 // although I've followed https://playwright.dev/dotnet/docs/api-testing
 // there is support for inheriting PlaywrightTest in Xunit 😭, you must write a ClassFixture
+[Collection(nameof(PlaywrightFixture))]
+public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncLifetime
+
 {
     private readonly IPlaywright _playwright;
     private readonly IBrowser _browser;
