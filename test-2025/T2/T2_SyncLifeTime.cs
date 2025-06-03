@@ -13,13 +13,20 @@ public class T2_SyncLifeTime
     
     public void Setup()
     {
-     
+        field = 2;
     }
 
     [Fact]
     public void SyncLifeTimeTest()
     {
         field.Should().Be(2);
+        field = 3;
+    }
+    
+    [Fact]
+    public void SyncLifeTimeTestAgain()
+    {
+        field.Should().Be(3);
     }
 
 

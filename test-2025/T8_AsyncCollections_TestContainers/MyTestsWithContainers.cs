@@ -67,7 +67,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
     public Task InitializeAsync()
     {
         TestLogger.LogInformation("TestsWithContainers InitializeAsync");
-        _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(), _mongoFixture.NewDbName());
+        _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(), _mongoFixture.NewDbName());  //<- show the trick
         TestLogger.LogInformation("MongoDbConnection dbName = " + _mongoFixture.DbName());
         return Task.CompletedTask;
     }

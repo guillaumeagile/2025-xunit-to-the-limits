@@ -28,8 +28,6 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<SimpleSyncLifeTimeFixt
 {
     private readonly SimpleSyncLifeTimeFixture _fixture;
     
-    
-    
 
     [Fact]
     [Trait("MyCategories", "T4_Fixtures")]
@@ -38,7 +36,8 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<SimpleSyncLifeTimeFixt
         _fixture.TestableValue.Should().Be(42);
     }
     
-    [Fact] [Trait("MyCategories", "T4_Fixtures")]
+    [Fact]
+    [Trait("MyCategories", "T4_Fixtures")]
     public void Test3()
     {
         _fixture.TestableValue.Should().Be(42);
@@ -62,7 +61,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<SimpleSyncLifeTimeFixt
     [Fact]
     public void zzzz()
     {
-        _fixture.TestableValue ++;  // NOOOOOOOOOO
+        _fixture.TestableValue ++;  // NOOOOOOOOOO, fixture is steady across methods, transient across instances of classes
         _fixture.TestableValue.Should().Be(43);
     }
     

@@ -1,3 +1,4 @@
+using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Images;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -22,8 +23,16 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
             .WithCleanUp(true)
-            //.WithReuse(true)    // BE CAREFUL !!!! NO MORE ISOLATION
-        //    .WithPortBinding(_mongoInternalPort, true)  // ALL 3 together to avoid port conflicts and stall
+           
+            // those 3 together to avoid port conflicts and stall
+             .WithReuse(true)    // be careful, super fast but no more isolation -> the data volume is shared
+            .WithPortBinding(_mongoInternalPort, false)  //fixed port for the container
+             .WithWaitStrategy( waitStrategy: Wait.ForUnixContainer().UntilPortIsAvailable(_mongoInternalPort))
+            
+            // or this one alone to ensure isolation (but not enough)
+           // .WithPortBinding(_mongoInternalPort, true) 
+            
+        
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
        
@@ -50,7 +59,8 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
 
     public string NewDbName()
     {   
-        _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!!
+        _dbName = "AlwaysTheSameDatabase";
+       // _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!! 
         return _dbName; 
     }
     

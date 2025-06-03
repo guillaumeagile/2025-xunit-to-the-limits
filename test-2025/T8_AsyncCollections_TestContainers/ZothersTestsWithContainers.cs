@@ -8,21 +8,42 @@ namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 // TRY TO RUN without the collection, it will create 2 containers at the same time (because of ZOhterTestsWithContainers)
 //[Collection(nameof(TestFixtureWithContainer4Mongo))]   // in sequence
 //[Collection((nameof(CollectionDefinitionOfTestsWithSameContainer)))] // in parallel
-public class ZMyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
+public class FirstMe_TestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
 {
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;
     private MongoDbConnection _mongoDbConnection;
     public ILogger TestLogger { get; init; }
 
-    public ZMyTestsWithContainers(TestFixtureWithContainer4Mongo fixture, ITestOutputHelper outputHelper)
+    public FirstMe_TestsWithContainers(TestFixtureWithContainer4Mongo fixture, ITestOutputHelper outputHelper)
     {
         TestLogger = outputHelper.ToLogger<MyTestsWithContainers>();
         fixture.TestLogger.LogInformation("TestsWithContainers constructed");
         _mongoFixture = fixture;
     }
+    
+    [Fact]
+    public async Task SaveFewMoreDto_ToMongoDB()
+    {
+        var mongoAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
+
+       _ = await mongoAdapter.InsertOrUpdateAsync(
+            new SomeDto("11", "Foo", 20), CancellationToken.None);
+
+        _ = await mongoAdapter.InsertOrUpdateAsync(
+            new SomeDto("111", "Foo", 20), CancellationToken.None);
+
+        _  = await mongoAdapter.InsertOrUpdateAsync(
+            new SomeDto("1111", "Foo", 20), CancellationToken.None);
+        
+        
+
+        var estimatedCount = await mongoAdapter.EstimatedCountAsync(CancellationToken.None);
+        estimatedCount.Should().Be(3);
+    }
+    
 
     [Fact]
-    public async Task IsolatedProof_MongoDB()
+    public async Task ZIsolatedProof_MongoDB()
     {
         var mongoAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
 
@@ -31,6 +52,9 @@ public class ZMyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mon
         var resultGetAll = await mongoAdapter.GetAllAsync(token);
         resultGetAll.IsSuccess.Should().BeTrue();
         resultGetAll.Value.Should().BeEmpty();
+        
+        var estimatedCount = await mongoAdapter.EstimatedCountAsync(token);
+        estimatedCount.Should().Be(0);
     }
 
 
