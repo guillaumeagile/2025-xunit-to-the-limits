@@ -14,12 +14,12 @@ public class MyWebAppFactory : WebApplicationFactory<T9webAPI.Program>
     // to keep track of the adapter being injected
     public FakeStorageAdapter<SomeDto> FakeStorageAdapter => _fakeStorageAdapter;
 
-    //THIS IS A MAJOR IMPROVEMENT
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureTestServices(svc =>
         {
-            _fakeStorageAdapter = new FakeStorageAdapter<SomeDto>();
+            _fakeStorageAdapter = new FakeStorageAdapter<SomeDto>();  // to keep track of the adapter being injected
             svc.AddSingleton<IStorageAdapter<SomeDto>>(sp => _fakeStorageAdapter);
         });
     }

@@ -8,7 +8,7 @@ public class SharedPlaywrightCollection : ICollectionFixture<PlaywrightFixture> 
 // ReSharper disable once ClassNeverInstantiated.Global
 public class PlaywrightFixture : IAsyncLifetime
 {
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         PlaywrightInstance = await Playwright.CreateAsync();
         Browser = await PlaywrightInstance.Chromium.LaunchAsync();
@@ -17,7 +17,7 @@ public class PlaywrightFixture : IAsyncLifetime
     public IBrowser Browser { get; private set; } = null!;
     public IPlaywright PlaywrightInstance { get; private set; } = null!;
 
-    public async Task DisposeAsync()
+    public virtual async Task DisposeAsync()
     {
         await Browser.DisposeAsync();
         PlaywrightInstance.Dispose();

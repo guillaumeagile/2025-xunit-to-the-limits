@@ -18,6 +18,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
     public MyTestsWithContainers(TestFixtureWithContainer4Mongo fixture, ITestOutputHelper outputHelper)
     {
         TestLogger = outputHelper.ToLogger<MyTestsWithContainers>();
+        fixture.TestLogger = TestLogger;
         fixture.TestLogger.LogInformation("TestsWithContainers constructed");
 
         //  _mongoConnectionString = fixture.DbConnectionString();  // NOOOOOOO ! why ?

@@ -8,21 +8,21 @@ using T8_Repositories_Adapters.source;
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
 [Collection(nameof(PlaywrightFixture))]
-public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyncLifetime
+public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncLifetime
 // although I've followed https://playwright.dev/dotnet/docs/api-testing
 // there is support for inheriting PlaywrightTest in Xunit 😭, you must write a ClassFixture
 {
     private readonly IPlaywright _playwright;
     private readonly IBrowser _browser;
-    private readonly MyWebAppFactory waf;
+    private readonly MyWebAppFactory _waf;
 
-    public WeatherPageTests(PlaywrightFixture fixture)
+    public ApiSimpleTests(PlaywrightFixture fixture)
     {
         _playwright = fixture.PlaywrightInstance;
         _browser = fixture.Browser;
-         waf = new MyWebAppFactory();
-        waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
-        waf.StartServer();
+         _waf = new MyWebAppFactory();
+        _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
+        _waf.StartServer();
     }
     
     // DISCLAIMER : the code given in release note preview 4 is just CRAP
@@ -31,7 +31,7 @@ public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyn
     [Fact]
     public async Task Page_LoadsSuccessfully()
     {
-        var weatherPath = waf.ClientOptions.BaseAddress.ToString() + "weather";
+        var weatherPath = _waf.ClientOptions.BaseAddress.ToString() + "weather";
 
         var ctx = await _playwright.APIRequest.NewContextAsync();
         var response = await ctx.GetAsync(weatherPath);
@@ -51,22 +51,22 @@ public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyn
     {
         //ARRANGE the data in the storage
       // var storageAdapter =  waf.Services.GetService(typeof(IStorageAdapter<SomeDto>)); boooooooh...  NULL :(
-      var storageAdapter = waf.FakeStorageAdapter; 
+      var storageAdapter = _waf.FakeStorageAdapter; 
        
         storageAdapter.Should().NotBeNull();
         var someDto = new SomeDto("2", "Foo", 20);
         await ((FakeStorageAdapter<SomeDto>)storageAdapter).InsertOrUpdateAsync(someDto, CancellationToken.None);
         
         //ARRANGE the http call
-        var weatherPath = waf.ClientOptions.BaseAddress.ToString() + "stored/2"  ;
-        var ctx = await _playwright.APIRequest.NewContextAsync();
+        var weatherPath = _waf.ClientOptions.BaseAddress.ToString() + "stored/2"  ;
+        await using var ctx = await _playwright.APIRequest.NewContextAsync();
         
         //ACT
-        var response = await ctx.GetAsync(weatherPath);
+        await using var response = await ctx.GetAsync(weatherPath);
     
         // ASSERT
         response.Ok.Should().BeTrue();
-        var json = (await response.JsonAsync())
+        var json = ((await response.JsonAsync())!)
             .Value
             .Should().BeOfType<JsonElement>()
             .Subject;
@@ -83,6 +83,6 @@ public class WeatherPageTests : IClassFixture<SharedPlaywrightCollection>, IAsyn
 
     public async Task DisposeAsync()
     {
-        await waf.DisposeAsync();
+        await _waf.DisposeAsync();
     }
 }
