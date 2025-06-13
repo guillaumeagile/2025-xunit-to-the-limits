@@ -6,6 +6,10 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
+// now : all together !
+// REST API with the WebAppFactory and containers for the infrastructure (mongo, redis, rabbitmq, ...)
+
+
 [Collection(nameof(SharedPlaywrightCollectionAndContainers))]
 public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContainers>, IAsyncLifetime
 {
@@ -18,8 +22,8 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
         _playwright = fixture.PlaywrightInstance;
         fixture.TestLogger = outputHelper.ToLogger<WithContainersApiTests>();
         
-        // je dois faire le register service de l'adapter avec la connexion string issue du container 
-        // obligé de le faire dans InitializeAsync car sinon c'est trop tôt
+        // I must register the adapter service with the connection string from the container
+        // Must be done in InitializeAsync because it's too early otherwise
         
         _fixture = fixture;
     }
@@ -28,12 +32,12 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
     {
         var mongoDbConnection = new MongoDbConnection(_fixture.DbConnectionString(), _fixture.NewDbName());
         _waf = new WafWithMongoAdapter(mongoDbConnection);  
-        // et voila, le WAF est connecté au container !
+        // And voila, the WAF is connected to the container!
         
         _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
-        _waf.StartServer(); // toujours pas de StartAsync :(
+        _waf.StartServer(); //  no StartAsync yet :(
         
-        //BENEFICE: aucune infrastructure requise pour lancer l'API et sa base de données :)
+        //BENEFIT: No infrastructure required to launch the API and its database :)
         
         return Task.CompletedTask;
     }

@@ -6,13 +6,12 @@ using T8_Repositories_Adapters.source;
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
 // public class ApiSimpleTess : PageTest { ... }
-
-
+//         does not work !!!      👆
 // although I've followed https://playwright.dev/dotnet/docs/api-testing
-// there is support for inheriting PlaywrightTest in Xunit 😭, you must write a ClassFixture
+// there is support for inheriting PlaywrightTest in Xunit 😭,
+// you must write a ClassFixture : PlaywrightFixture
 [Collection(nameof(PlaywrightFixture))]
 public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncLifetime
-
 {
     private readonly IPlaywright _playwright;
     private readonly IBrowser _browser;
@@ -26,6 +25,7 @@ public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncL
         _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
         _waf.StartServer();
     }
+    // this "simple" test  only tests the API, and no infrastructure is provided
     
     // DISCLAIMER : the code given in release note preview 4 is just CRAP
     // https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview4/aspnetcore.md#use-webapplicationfactory-with-kestrel-for-integration-testing
