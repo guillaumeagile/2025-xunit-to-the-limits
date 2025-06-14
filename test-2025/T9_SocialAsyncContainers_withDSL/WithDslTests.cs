@@ -43,35 +43,7 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         // the DSL rules them all 💪
     }
 
-    [Fact]
-    public async Task CallRouteGetById()
-    {
-        //ARRANGE the data in the storage -> in the DSL
-        // IStorageAdapter<SomeDto> storageAdapter = _waf.MongoStorageAdapter;
-        // storageAdapter.Should().NotBeNull();
 
-        var someDto = new SomeDto("2", "Foobar", 42); //try with empty string as ID
-        // now in the DSL
-        //     var resultInsertOrUpdate = await storageAdapter.InsertOrUpdateAsync(someDto, CancellationToken.None);
-        // the DSL must tell a story
-        await _fixtureDsl.InsertSome(someDto);
-
-
-        //ARRANGE the http call
-        using var dsl1 = await (_fixtureDsl.SetRelativePathTo("stored/2")
-            // in the DSL , we hide the technical stuff 
-            //        await using var ctx = await _playwright.APIRequest.NewContextAsync()
-            // and simply ACT
-            //  await using var response = await ctx.GetAsync(weatherPath);
-            .GetAllAsync());
-
-        var jsonElement = await dsl1.ExtractJsonAsync();
-        jsonElement.HasValue.Should().BeTrue();
-
-        // fast compare: check if the json can be deserialized to the same object
-        var deserializedDto = JsonSerializer.Deserialize<SomeDto>(jsonElement.ToString());
-        deserializedDto.Should().BeEquivalentTo(someDto);
-    }
     
     [Fact]
     public async Task CallRouteGetById_Concise()
@@ -82,7 +54,7 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
             .InsertSome(someDto)
             .ContinueWith(async _ =>
             {
-                using var result = await _fixtureDsl
+                await using var result = await _fixtureDsl
                     .SetRelativePathTo("stored/2")
                     .GetAllAsync();
                 

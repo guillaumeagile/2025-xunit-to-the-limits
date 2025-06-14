@@ -86,25 +86,20 @@ public class DslFixture
         private IAPIResponse _response; //Disposable
         private IAPIRequestContext _ctx; //Disposable
 
-        public async Task<DslFixtureWithRelativePath> GetAllAsync()
+        public async Task<DslFixtureWResponse> GetAllAsync()
         {
             var weatherPath = waf.ClientOptions.BaseAddress.ToString() + basePath;  ;
               _ctx = await playwrightInstance.APIRequest.NewContextAsync();
              _response = await _ctx.GetAsync(weatherPath);
             _response.Ok.Should().BeTrue();
-            return this;
+            return new DslFixtureWResponse(_response); ;
         }
-        
-        public async  Task<JsonElement?> ExtractJsonAsync()
-        {
-            return await _response.JsonAsync();
-        }   
+  
 
         public void Dispose()
         {
             CastAndDispose(_response);
             CastAndDispose(_ctx);
-
             return;
 
             static void CastAndDispose(IAsyncDisposable resource)
@@ -115,5 +110,23 @@ public class DslFixture
                     _ = resource.DisposeAsync().AsTask();
             }
         }
+    }
+}
+
+public class DslFixtureWResponse(IAPIResponse response) : IAsyncDisposable, IDisposable
+{
+    public async  Task<JsonElement?> ExtractJsonAsync()
+    {
+        return await response.JsonAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await response.DisposeAsync();
+    }
+
+    public void Dispose()
+    {
+        DisposeAsync().AsTask().Wait();
     }
 }
