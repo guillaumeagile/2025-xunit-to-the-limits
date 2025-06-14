@@ -33,8 +33,9 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         // var mongoDbConnection = new MongoDbConnection(_fixture.DbConnectionString(), _fixture.NewDbName());
         //  _waf = new WafWithMongoAdapter(mongoDbConnection);  
         //_waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
-        //  _waf.StartServer(); //  no StartAsync yet :(
+        //  _waf.StartServer(); 
         await this._fixtureDsl.InitializeAsync(); // HERE !!!! super important to AWAIT for this
+        // the fixture is reInitialized everytime, which create new containers... SLOWER :(
 
         //BENEFIT: the plumbing is in the DSL, and easier to share across tests
         // this also the reduce the surface of friction between test plumbing (which was too big)
@@ -64,11 +65,11 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
             //  await using var response = await ctx.GetAsync(weatherPath);
             .GetAllAsync());
 
-        var json = await dsl1.ExtractJsonAsync();
-        json.HasValue.Should().BeTrue();
+        var jsonElement = await dsl1.ExtractJsonAsync();
+        jsonElement.HasValue.Should().BeTrue();
 
         // fast compare: check if the json can be deserialized to the same object
-        var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
+        var deserializedDto = JsonSerializer.Deserialize<SomeDto>(jsonElement.ToString());
         deserializedDto.Should().BeEquivalentTo(someDto);
     }
     
@@ -85,11 +86,11 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
                     .SetRelativePathTo("stored/2")
                     .GetAllAsync();
                 
-                var json = await result.ExtractJsonAsync();
-                json.HasValue.Should().BeTrue();
+                var jsonElement = await result.ExtractJsonAsync();
+                jsonElement.HasValue.Should().BeTrue();
                 
-                var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
-                deserializedDto.Should().BeEquivalentTo(someDto);
+                var actualdDto = JsonSerializer.Deserialize<SomeDto>(jsonElement.ToString());
+                actualdDto.Should().BeEquivalentTo(someDto);
             });
     }
     

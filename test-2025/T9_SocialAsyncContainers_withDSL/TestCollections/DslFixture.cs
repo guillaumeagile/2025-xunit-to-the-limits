@@ -18,7 +18,7 @@ public class DslFixture
     protected IPlaywright PlaywrightInstance { get; private set; } = null!;
 
     // WAF for http server
-    protected WafWithMongoAdapter Waf { get; private set; }
+    protected WafWithMongoAdapter? Waf { get; private set; }
 
     // container for Mongo
     private const string _mongoImage = "mongo:7.0.16-jammy";
@@ -38,7 +38,6 @@ public class DslFixture
             .WithPortBinding(27017, true)
             .WithImagePullPolicy(PullPolicy.Missing)
             .WithLogger(TestLogger);
-        ;
 
         _mongoContainer = builder.Build();
 
@@ -50,14 +49,14 @@ public class DslFixture
 
         var mongoDbConnection = new MongoDbConnection(_mongoContainer.GetConnectionString(), NewDbName());
         Waf = new WafWithMongoAdapter(mongoDbConnection);
-        Waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
+        Waf.UseKestrel(cfg => { cfg.ListenLocalhost( Random.Shared.Next(1000, 9999) ); });
         Waf.StartServer(); //  no StartAsync yet :(
     }
 
 
     public async Task DisposeAsync()
     {
-        
+        Waf.Dispose();
         await Browser.DisposeAsync();
         PlaywrightInstance.Dispose();
 
@@ -89,7 +88,7 @@ public class DslFixture
 
         public async Task<DslFixtureWithRelativePath> GetAllAsync()
         {
-            var weatherPath = waf.ClientOptions.BaseAddress.ToString() + "stored/2"  ;
+            var weatherPath = waf.ClientOptions.BaseAddress.ToString() + basePath;  ;
               _ctx = await playwrightInstance.APIRequest.NewContextAsync();
              _response = await _ctx.GetAsync(weatherPath);
             _response.Ok.Should().BeTrue();
