@@ -16,12 +16,12 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
 {
     //  private readonly IPlaywright _playwright;
     //  private WafWithMongoAdapter _waf;
-    private readonly DslFixture _fixture;
+    private readonly DslFixture _fixtureDsl;
 
-    public WithDslTests(DslFixture fixture, ITestOutputHelper outputHelper)
+    public WithDslTests(DslFixture fixtureDsl, ITestOutputHelper outputHelper)
     {
-        _fixture = fixture;
-        fixture.TestLogger = outputHelper.ToLogger<WithDslTests>();
+        _fixtureDsl = fixtureDsl;
+        fixtureDsl.TestLogger = outputHelper.ToLogger<WithDslTests>();
 
         // the idea is that the DSL simplifies the setup and the plumbing
         // so that the tests are focused on the business logic
@@ -34,7 +34,7 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         //  _waf = new WafWithMongoAdapter(mongoDbConnection);  
         //_waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
         //  _waf.StartServer(); //  no StartAsync yet :(
-        await this._fixture.InitializeAsync(); // HERE !!!! super important to AWAIT for this
+        await this._fixtureDsl.InitializeAsync(); // HERE !!!! super important to AWAIT for this
 
         //BENEFIT: the plumbing is in the DSL, and easier to share across tests
         // this also the reduce the surface of friction between test plumbing (which was too big)
@@ -53,28 +53,50 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         // now in the DSL
         //     var resultInsertOrUpdate = await storageAdapter.InsertOrUpdateAsync(someDto, CancellationToken.None);
         // the DSL must tell a story
-        await _fixture.InsertSome(someDto);
+        await _fixtureDsl.InsertSome(someDto);
 
 
         //ARRANGE the http call
-        var v=  (await (_fixture.SetRelativePathTo("stored/2")
-                // in the DSL , we hide the technical stuff 
-                //        await using var ctx = await _playwright.APIRequest.NewContextAsync()
-                // and simply ACT
-                //  await using var response = await ctx.GetAsync(weatherPath);
-            .GetAllAsync()));
+        using var dsl1 = await (_fixtureDsl.SetRelativePathTo("stored/2")
+            // in the DSL , we hide the technical stuff 
+            //        await using var ctx = await _playwright.APIRequest.NewContextAsync()
+            // and simply ACT
+            //  await using var response = await ctx.GetAsync(weatherPath);
+            .GetAllAsync());
 
-        var json = await v.JsonAsync();
+        var json = await dsl1.ExtractJsonAsync();
         json.HasValue.Should().BeTrue();
-        
+
         // fast compare: check if the json can be deserialized to the same object
         var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
         deserializedDto.Should().BeEquivalentTo(someDto);
     }
+    
+    [Fact]
+    public async Task CallRouteGetById_Concise()
+    {
+        var someDto = new SomeDto("2", "Foobar", 42);
+        
+        await _fixtureDsl
+            .InsertSome(someDto)
+            .ContinueWith(async _ =>
+            {
+                using var result = await _fixtureDsl
+                    .SetRelativePathTo("stored/2")
+                    .GetAllAsync();
+                
+                var json = await result.ExtractJsonAsync();
+                json.HasValue.Should().BeTrue();
+                
+                var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
+                deserializedDto.Should().BeEquivalentTo(someDto);
+            });
+    }
+    
 
 
     public async Task DisposeAsync()
     {
-       await _fixture.DisposeAsync();
+        await _fixtureDsl.DisposeAsync();
     }
 }

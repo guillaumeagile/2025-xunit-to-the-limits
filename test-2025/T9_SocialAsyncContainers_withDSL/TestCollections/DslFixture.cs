@@ -57,6 +57,7 @@ public class DslFixture
 
     public async Task DisposeAsync()
     {
+        
         await Browser.DisposeAsync();
         PlaywrightInstance.Dispose();
 
@@ -95,7 +96,7 @@ public class DslFixture
             return this;
         }
         
-        public async  Task<JsonElement?> JsonAsync()
+        public async  Task<JsonElement?> ExtractJsonAsync()
         {
             return await _response.JsonAsync();
         }   
