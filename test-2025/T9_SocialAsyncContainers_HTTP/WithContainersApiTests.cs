@@ -22,9 +22,6 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContain
         _playwright = fixture.PlaywrightInstance;
         fixture.TestLogger = outputHelper.ToLogger<WithContainersApiTests>();
         
-        // I must register the adapter service with the connection string from the container
-        // Must be done in InitializeAsync because it's too early otherwise
-        
         _fixture = fixture;
     }
 

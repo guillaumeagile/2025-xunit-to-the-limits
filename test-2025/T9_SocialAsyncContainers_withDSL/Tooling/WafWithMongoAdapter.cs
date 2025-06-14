@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using T8_Repositories_Adapters.source;
 
-namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
+namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL.Tooling;
 
-public class WafWithMongoAdapter  : WebApplicationFactory<T9webAPI.Program>
+internal class WafWithMongoAdapter  : WebApplicationFactory<T9webAPI.Program>
 {
     private IStorageAdapter<SomeDto> _mongoStorageAdapter;
     private MongoDbConnection _mongoDbConnection;

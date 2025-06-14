@@ -39,4 +39,8 @@
       <ProjectReference Include="..\T9webAPI\T9webAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="T9_SocialAsyncContainers_withDSL\Fakes\" />
+    </ItemGroup>
+
 </Project>
