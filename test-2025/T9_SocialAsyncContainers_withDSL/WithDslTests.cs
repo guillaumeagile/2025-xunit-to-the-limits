@@ -42,8 +42,6 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         // and limit the misusage of all the stuff: playwright+waf+testContainers
         // the DSL rules them all 💪
     }
-
-
     
     [Fact]
     public async Task CallRouteGetById_Concise()
