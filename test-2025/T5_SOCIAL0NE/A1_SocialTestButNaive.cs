@@ -1,6 +1,6 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
-using FluentAssertions;
+using AwesomeAssertions;
 using MyService = _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources.MyService;
 
 namespace _2025_xunit_to_the_limits_src.T5_SOCIAL0NE;

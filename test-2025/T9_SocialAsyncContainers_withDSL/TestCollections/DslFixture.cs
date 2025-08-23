@@ -1,6 +1,6 @@
 using _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 using DotNet.Testcontainers.Images;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Playwright;

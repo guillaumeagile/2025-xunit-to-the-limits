@@ -1,5 +1,5 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
-using FluentAssertions;
+using AwesomeAssertions;
 
 namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 

@@ -1,7 +1,7 @@
 using System.Text.Json;
 using _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL.TestCollections;
 using _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL.Tooling;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.Playwright;
 using T8_Repositories_Adapters.source;
 using Xunit.Abstractions;

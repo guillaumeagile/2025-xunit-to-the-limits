@@ -1,5 +1,5 @@
 using System.Text.Json;
-using FluentAssertions;
+using AwesomeAssertions;
 using Microsoft.Playwright;
 using T8_Repositories_Adapters.source;
 using Xunit.Abstractions;

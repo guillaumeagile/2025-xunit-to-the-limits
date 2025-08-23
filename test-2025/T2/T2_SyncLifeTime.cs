@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 
 namespace _2025_xunit_to_the_limits_src.T2;
 
