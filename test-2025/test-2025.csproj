@@ -21,6 +21,7 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
         <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.52.0" />
         <PackageReference Include="Microsoft.Playwright.Xunit" Version="1.52.0" />
+        <PackageReference Include="xbehave" Version="2.4.1" />
         
  
         <PackageReference Include="Testcontainers" Version="4.4.0" />
