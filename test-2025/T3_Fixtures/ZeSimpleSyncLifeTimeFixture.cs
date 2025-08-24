@@ -2,13 +2,13 @@ using NUlid;
 
 namespace _2025_xunit_to_the_limits_src.T3_Fixtures;
 
-public class SimpleSyncLifeTimeFixture : IDisposable
+public class ZeSimpleSyncLifeTimeFixture : IDisposable
 {
     public int TestableValue { get; set; }
 
     public string Uid { get; init; }
 
-    public SimpleSyncLifeTimeFixture()
+    public ZeSimpleSyncLifeTimeFixture()
     {
         Console.WriteLine("this is the SETUP of the fixture");
         TestableValue = 42;
