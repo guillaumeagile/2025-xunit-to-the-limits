@@ -5,7 +5,7 @@ namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 
  [Collection(nameof(CollectionOfTestsWithFake))] //we force to use the broken fake
 //  [Collection(nameof(CollectionOfTestsWithDriver))]   // now try with the 'nice' driver
-public class A0_SocialTestUsingDifferentCollections : IClassFixture<TestFixtureWithAnyRepo>
+public class A0_SocialTestUsingDifferentCollections : IClassFixture<TestFixtureWithAnyRepo>  //the base fixture must have a constructor 🤔 
 {
     private readonly MyService sut;
 

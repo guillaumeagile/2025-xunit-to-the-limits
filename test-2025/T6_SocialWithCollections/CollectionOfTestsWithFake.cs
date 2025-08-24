@@ -13,12 +13,8 @@ public class AnotherCollectionOfTestsWithFake : ICollectionFixture<TestFixtureWi
 {
 }
 
-public interface IGlobalFixture
-{
-    IRepository<Element> Repository { get; }
-}
 
-public class TestFixtureWithAnyRepo : IGlobalFixture
+public class TestFixtureWithAnyRepo 
 {
     public IRepository<Element> Repository { get; protected set; }
 }

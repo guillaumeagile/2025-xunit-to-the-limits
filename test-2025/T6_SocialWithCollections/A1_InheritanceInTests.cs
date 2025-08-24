@@ -12,9 +12,8 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
         _sut = new MyService(fixture.Repository);
     }
 
-
     [Fact]
-    public void SocialPalGivenByFixture()
+    public void OneSocialSharedTest()  // launch this test will run both fixtures
     {
         var anElement = new Element();
 
@@ -24,18 +23,19 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
     }
 }
 
-[Collection(nameof(TestFixtureWithFake))]
-public class SocialTestWithFake : SocialTestBase, IClassFixture<TestFixtureWithFake>
-{
-    public SocialTestWithFake(TestFixtureWithFake fixture) : base(fixture)
-    {
-    }
-}
 
 [Collection(nameof(TestFixtureWithDriver))]
 public class SocialTestWithDriver : SocialTestBase, IClassFixture<TestFixtureWithDriver>
 {
     public SocialTestWithDriver(TestFixtureWithDriver fixture) : base(fixture)
+    {
+    }
+}
+
+[Collection(nameof(TestFixtureWithFake))]
+public class SocialTestWithFake : SocialTestBase, IClassFixture<TestFixtureWithFake>
+{
+    public SocialTestWithFake(TestFixtureWithFake fixture) : base(fixture)
     {
     }
 }
