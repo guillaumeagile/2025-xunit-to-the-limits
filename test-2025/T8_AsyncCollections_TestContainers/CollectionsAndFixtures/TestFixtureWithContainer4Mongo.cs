@@ -7,12 +7,12 @@ using Testcontainers.MongoDb;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
-public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠️ 
+public class TestFixtureWithContainer4Mongo : IAsyncLifetime // <----- ⚠️ 
 {
     private const string _mongoImage = "mongo:7.0-jammy";
     private const int _mongoInternalPort = 27017;
     //  private const int DefaultMongoExternalPort = 27019;
-    
+
     private MongoDbContainer? _mongoContainer;
     private MongoClient dbClient;
     private string _dbName;
@@ -23,34 +23,34 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠�
         var builder = new MongoDbBuilder()
             .WithImage(_mongoImage)
             .WithCleanUp(true)
-           
+
             // those 3 together to avoid port conflicts and stall
-             .WithReuse(true)    // be careful, super fast but no more isolation -> the data volume is shared
-            .WithPortBinding(_mongoInternalPort, false)  //fixed port for the container
-             .WithWaitStrategy( waitStrategy: Wait.ForUnixContainer().UntilPortIsAvailable(_mongoInternalPort))
-            
+            .WithReuse(true) // be careful, super fast but no more isolation -> the data volume is shared
+            .WithPortBinding(_mongoInternalPort, false) //fixed port for the container
+            .WithWaitStrategy(waitStrategy: Wait.ForUnixContainer().UntilPortIsAvailable(_mongoInternalPort))
+
             // or this one alone to ensure isolation (but not enough)
-           // .WithPortBinding(_mongoInternalPort, true) 
-        
-            .WithImagePullPolicy(  PullPolicy.Missing)
-            .WithLogger(TestLogger );;
-       
+            // .WithPortBinding(_mongoInternalPort, true) 
+            .WithImagePullPolicy(PullPolicy.Missing)
+            .WithLogger(TestLogger);
+        ;
+
         _mongoContainer = builder.Build();
-      
+
         await _mongoContainer.StartAsync();
         TestLogger.LogInformation("MongoDbContainer started");
-        
-        Thread.Sleep(2000); //slows down the test to show you when the container is started (once or twice)
+
+        //Thread.Sleep(2000); //slows down the test to show you when the container is started (once or twice)
         // depending on which you use the Collection or not
-        
+
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
-        
-        dbClient.GetDatabase(NewDbName());  
+
+        dbClient.GetDatabase(NewDbName());
     }
 
     public async Task DisposeAsync()
     {
-         await _mongoContainer.DisposeAsync();
+        await _mongoContainer.DisposeAsync();
     }
 
     public string? DbConnectionString()
@@ -60,14 +60,14 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- ⚠�
 
 
     public string NewDbName()
-    {   
-       // _dbName = "AlwaysTheSameDatabase";
-         _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!! 
-        return _dbName; 
+    {
+        // _dbName = "AlwaysTheSameDatabase";
+        _dbName = NUlid.Ulid.NewUlid().ToString(); //TRICK !!!!! 
+        return _dbName;
     }
-    
+
     public string DbName()
-    {   
-        return _dbName; 
+    {
+        return _dbName;
     }
 }

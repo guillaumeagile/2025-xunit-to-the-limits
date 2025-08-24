@@ -6,8 +6,6 @@ using Xunit.Abstractions;
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
 //  IClassFixture<TestFixtureWithContainer4Mongo>    //  >>>>> Container-per-class Strategy, but ....
-// to be able to reuse the same container, and for speed use this:
-[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
 
 public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime  //
 {
@@ -72,6 +70,8 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         resultGetAll.Value.Should().BeEmpty();
     }
 
+    // to be able to reuse the same container, and for speed use this at top of the class:
+//[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
 
     public Task DisposeAsync()
     {
