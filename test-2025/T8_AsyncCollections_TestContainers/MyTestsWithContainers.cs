@@ -5,11 +5,11 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
-//[Collection(nameof(TestFixtureWithContainer4Mongo))]   //  >>>>> Container-per-class Strategy
-//for speed use this:
+//  IClassFixture<TestFixtureWithContainer4Mongo>    //  >>>>> Container-per-class Strategy, but ....
+// to be able to reuse the same container, and for speed use this:
 [Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
 
-public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
+public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime  //
 {
     private readonly string? _mongoConnectionString;
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;

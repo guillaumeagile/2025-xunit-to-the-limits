@@ -5,11 +5,13 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
-//[Collection(nameof(TestFixtureWithContainer4Mongo))]   
-//for speed use this:
-[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
+// declaring the same IClassFixture<TestFixtureWithContainer4Mongo>    //  >>>>> Container-per-class Strategy,
+// will block while the test tries to reuse the running container :(
+// to solve the problem, remove IClassFixture<TestFixtureWithContainer4Mongo> from the constructor, and
+// uncomment this:
+//[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
 
-public class FirstMe_TestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
+public class FirstMe_TestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime  //
 {
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;
     private MongoDbConnection _mongoDbConnection;
