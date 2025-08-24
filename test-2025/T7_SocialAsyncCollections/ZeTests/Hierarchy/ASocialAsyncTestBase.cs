@@ -11,7 +11,7 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
     /*********** the TEST SUITE *********/
     
     [Fact]
-    public async Task SocialPalGivenByFixture()
+    public async Task SavingWithTheHelpOfFriend()
     {
         var anElement = new Element();
 
@@ -19,19 +19,19 @@ public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyn
 
         resOfSave.Should().BeTrue();
         
-        _logger.LogTrace( _fixture.Uid);
+        _logger.LogTrace( _zeFixture.Uid);
     }
     
     private readonly ILogger _logger;
     private readonly MyAsyncService _sut;
-    private readonly TestFixtureWithAnyAsyncRepo _fixture;
+    private readonly TestFixtureWithAnyAsyncRepo _zeFixture;
 
-    protected SocialAsyncTestBase(TestFixtureWithAnyAsyncRepo fixture, ITestOutputHelper outputHelper)
+    protected SocialAsyncTestBase(TestFixtureWithAnyAsyncRepo zeFixture, ITestOutputHelper outputHelper)
     {
         _logger = outputHelper.ToLogger<SocialAsyncTestBase>();
-        fixture.TestLogger = _logger;
-        _fixture = fixture;
-        _sut = new MyAsyncService(fixture.Repository, _logger);
+        zeFixture.TestLogger = _logger;
+        _zeFixture = zeFixture;
+        _sut = new MyAsyncService(zeFixture.Repository, _logger);
     }
 
 
