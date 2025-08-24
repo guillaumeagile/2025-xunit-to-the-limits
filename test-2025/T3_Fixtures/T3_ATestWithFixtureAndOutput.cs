@@ -48,7 +48,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     [Fact]
     public void TestClassExpectingLogger()
     {
-        var sutClass = new T4_SutClass(this.TestLogger);
+        var sutClass = new T3_SutClass(this.TestLogger);
         sutClass.TestableValue.Should().Be(88);
     }
 

@@ -2,9 +2,9 @@ using Microsoft.Extensions.Logging;
 
 namespace _2025_xunit_to_the_limits_src.T3_Fixtures;
 
-public class T4_SutClass
+public class T3_SutClass
 {
-    public T4_SutClass(ILogger anyLogger)
+    public T3_SutClass(ILogger anyLogger)
     {
         anyLogger?.LogInformation("HEEYYYYY !!!! logger SHOULD BE available in SutClass");
         anyLogger?.LogDebug("TestableValue of Sut = " + TestableValue.ToString());
