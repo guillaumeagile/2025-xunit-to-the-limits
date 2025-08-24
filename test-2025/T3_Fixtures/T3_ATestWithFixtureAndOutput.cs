@@ -28,7 +28,6 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     {
         _fixture.TestableValue.Should().Be(42);
         _storedUid = _fixture.Uid; // you shouldn't write stuff like that
-      
     }
     
     [Fact]
@@ -38,14 +37,6 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
         _fixture.TestableValue.Should().Be(42);
         //_fixture.Uid.Should().Be(_storedUid);
     }
-    
-    [Fact]
-    public void TestClassExpectingLoggerButWhere()
-    {
-        var sutClass = new T4_SutClass(null);
-        sutClass.TestableValue.Should().Be(88);
-    }
-    
    
     [Fact]
     public void __DontDoThat()
@@ -79,7 +70,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
         
         
         // outputHelper is not ILogger 🤔
-      //   this.TestLogger = outputHelper.ToLogger<SimpleSyncLifeTimeFixture>();
+        // this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
     }
 
     public ILogger TestLogger { get; init; }
