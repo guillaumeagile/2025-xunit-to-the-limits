@@ -5,14 +5,23 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
+// >>>>>>>> SCROLL DOWN TO THE DEFINITION OF CLASS
+// >>>>>>>> 
 //  IClassFixture<TestFixtureWithContainer4Mongo>    //  >>>>> Container-per-class Strategy, but ....
+// on purpose, I've created the condition where the tests can freeze because of re-using the containers in a wrong way
+[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ]
 
-public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime  //
+// >>>>>>>> 
+// >>>>>>>> 
+// >>>>>>>> 
+// >>>>>>>> 
+
+public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime  // to fix later
 {
     private readonly string? _mongoConnectionString;
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;
     private MongoDbConnection _mongoDbConnection;
-    public ILogger TestLogger { get; init; }
+    private ILogger TestLogger { get; init; }
 
     public MyTestsWithContainers(TestFixtureWithContainer4Mongo fixture, ITestOutputHelper outputHelper)
     {
@@ -20,6 +29,7 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         fixture.TestLogger = TestLogger;
         fixture.TestLogger.LogInformation("TestsWithContainers constructed");
         //  _mongoConnectionString = fixture.DbConnectionString();  // NOOOOOOO ! why ?
+        // HINT: the constructor is not ASync and is called before the InitializeAsync() method
         _mongoFixture = fixture;
     }
     
