@@ -4,7 +4,7 @@ namespace _2025_xunit_to_the_limits_src.T2;
 
 public class T2_SyncLifeTime
 {
-    private int field = 0;
+    private int _field = 0;
 
     public T2_SyncLifeTime()
     {
@@ -13,20 +13,20 @@ public class T2_SyncLifeTime
     
     public void Setup()
     {
-        field = 2;
+        _field = 2;
     }
 
     [Fact]
     public void SyncLifeTimeTest()
     {
-        field.Should().Be(2);
-        field = 3;
+        _field.Should().Be(2);
+        _field = 3;
     }
     
     [Fact]
     public void SyncLifeTimeTestAgain()
     {
-        field.Should().Be(3);
+        _field.Should().Be(3);
     }
 
 
