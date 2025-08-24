@@ -94,6 +94,6 @@ public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
     public void Dispose()
     {
         TestableValue = 0;
-        TestLogger.LogCritical("this is the TEARDOW of the fixture");
+        TestLogger.LogCritical("👓 👓 👓  this is the TEARDOW of the fixture");
     }
 }
