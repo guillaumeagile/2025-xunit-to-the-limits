@@ -5,9 +5,10 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
-// TRY TO RUN without the collection, it will create 2 containers at the same time (because of ZOhterTestsWithContainers)
-//[Collection(nameof(TestFixtureWithContainer4Mongo))]   // in sequence
-//[Collection((nameof(CollectionDefinitionOfTestsWithSameContainer)))] // in parallel
+//[Collection(nameof(TestFixtureWithContainer4Mongo))]   
+//for speed use this:
+[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
+
 public class FirstMe_TestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
 {
     private readonly TestFixtureWithContainer4Mongo _mongoFixture;
@@ -35,8 +36,6 @@ public class FirstMe_TestsWithContainers : IClassFixture<TestFixtureWithContaine
         _  = await mongoAdapter.InsertOrUpdateAsync(
             new SomeDto("1111", "Foo", 20), CancellationToken.None);
         
-        
-
         var estimatedCount = await mongoAdapter.EstimatedCountAsync(CancellationToken.None);
         estimatedCount.Should().Be(3);
     }

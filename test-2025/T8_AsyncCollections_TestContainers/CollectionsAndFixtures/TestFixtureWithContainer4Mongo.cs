@@ -9,7 +9,7 @@ namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
 public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸ 
 {
-    private const string _mongoImage = "mongo:7.0.16-jammy";
+    private const string _mongoImage = "mongo:7.0-jammy";
     private const int _mongoInternalPort = 27017;
     //  private const int DefaultMongoExternalPort = 27019;
     
@@ -31,7 +31,6 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
             
             // or this one alone to ensure isolation (but not enough)
            // .WithPortBinding(_mongoInternalPort, true) 
-            
         
             .WithImagePullPolicy(  PullPolicy.Missing)
             .WithLogger(TestLogger );;
@@ -40,6 +39,9 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
       
         await _mongoContainer.StartAsync();
         TestLogger.LogInformation("MongoDbContainer started");
+        
+        Thread.Sleep(2000); //slows down the test to show you when the container is started (once or twice)
+        // depending on which you use the Collection or not
         
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
         
@@ -59,8 +61,8 @@ public class TestFixtureWithContainer4Mongo  : IAsyncLifetime    // <----- âš ï¸
 
     public string NewDbName()
     {   
-        _dbName = "AlwaysTheSameDatabase";
-       // _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!! 
+       // _dbName = "AlwaysTheSameDatabase";
+         _dbName = NUlid.Ulid.NewUlid().ToString();    //TRICK !!!!! 
         return _dbName; 
     }
     

@@ -5,9 +5,10 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T8_AsyncCollections_TestContainers;
 
-// TRY TO RUN without the collection, it will create 2 containers at the same time (because of ZOhterTestsWithContainers)
-[Collection(nameof(TestFixtureWithContainer4Mongo))]   // will run in sequence  >>>>> Container-per-class Strategy
-//[Collection((nameof(CollectionDefinitionOfTestsWithSameContainer)))]  //   Container-per-collection strategy >>>>  2 classes with the same collectionDefinition will run in parallel, inside each class methods will go in sequence 
+//[Collection(nameof(TestFixtureWithContainer4Mongo))]   //  >>>>> Container-per-class Strategy
+//for speed use this:
+[Collection(nameof(CollectionDefinitionOfTestsWithSameContainer)) ] // Container-per-collection strategy
+
 public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mongo>, IAsyncLifetime
 {
     private readonly string? _mongoConnectionString;
@@ -20,10 +21,17 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         TestLogger = outputHelper.ToLogger<MyTestsWithContainers>();
         fixture.TestLogger = TestLogger;
         fixture.TestLogger.LogInformation("TestsWithContainers constructed");
-
         //  _mongoConnectionString = fixture.DbConnectionString();  // NOOOOOOO ! why ?
-
         _mongoFixture = fixture;
+    }
+    
+    public Task InitializeAsync()
+    {
+        TestLogger.LogInformation("TestsWithContainers InitializeAsync");
+        _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(),
+            _mongoFixture.NewDbName());  //<- show the trick
+        TestLogger.LogInformation("MongoDbConnection dbName = " + _mongoFixture.DbName());
+        return Task.CompletedTask;
     }
 
     [Fact]
@@ -64,13 +72,6 @@ public class MyTestsWithContainers : IClassFixture<TestFixtureWithContainer4Mong
         resultGetAll.Value.Should().BeEmpty();
     }
 
-    public Task InitializeAsync()
-    {
-        TestLogger.LogInformation("TestsWithContainers InitializeAsync");
-        _mongoDbConnection = new MongoDbConnection(_mongoFixture.DbConnectionString(), _mongoFixture.NewDbName());  //<- show the trick
-        TestLogger.LogInformation("MongoDbConnection dbName = " + _mongoFixture.DbName());
-        return Task.CompletedTask;
-    }
 
     public Task DisposeAsync()
     {
