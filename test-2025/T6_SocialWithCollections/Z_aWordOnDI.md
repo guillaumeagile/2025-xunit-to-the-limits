@@ -1,10 +1,12 @@
-# A word on Dependency Injection in .NET
+# A word on Dependency Injection in .NET Core
 
 ## Built-in container (default)
 - Microsoft.Extensions.DependencyInjection
 - Supports scopes, open generics, factories, IOptions, IHostedService.
-- Missing: named/keyed services, decorators, interception, child containers.
+- Missing: named/keyed services (😱), decorators, interception, child containers.  
 - Good default for most apps.
+
+*GPT5 is hallucinating: Microsoft.Extensions.DependencyInjection supports since .NET 8 🙏*
 
 ## Popular third‑party containers
 - Autofac — modules, keyed services, decorators, scanning, property injection. Mature.
