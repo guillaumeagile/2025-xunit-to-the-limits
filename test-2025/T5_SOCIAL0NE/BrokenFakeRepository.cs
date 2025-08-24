@@ -7,5 +7,6 @@ public class BrokenFakeRepository<T> : IRepository<T>
     public bool Save(T anElement)
     {
         return false; //change me
+        // then unchange for T6_SocialWithCollections
     }
 }

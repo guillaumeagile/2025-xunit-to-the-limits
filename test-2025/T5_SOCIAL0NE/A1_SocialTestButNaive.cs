@@ -8,19 +8,6 @@ namespace _2025_xunit_to_the_limits_src.T5_SOCIAL0NE;
 public class SocialTest
 {
     [Fact]
-    public void SolitaryTest()
-    {
-        var anElement = new Element();
-
-        var sut = new MyService();
-
-        var resOfSave = sut.SaveAlone(anElement);
-
-        resOfSave.Should().BeTrue();
-    }
-
-
-    [Fact]
     public void FirstSocialTest()
     {
         var anElement = new Element();
@@ -44,5 +31,17 @@ public class SocialTest
         var resOfSave = sut.SaveSocial(anElement);
 
         resOfSave.Should().BeFalse();
+    }
+    
+    [Fact]
+    public void SolitaryTest()
+    {
+        var anElement = new Element();
+
+        var sut = new MyService();
+
+        var resOfSave = sut.SaveAlone(anElement);
+
+        resOfSave.Should().BeTrue();
     }
 }
