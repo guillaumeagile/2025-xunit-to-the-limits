@@ -8,10 +8,10 @@
 
     <ItemGroup>
         <PackageReference Include="FluentResults" Version="4.0.0" />
-        <PackageReference Include="MongoDB.Bson" Version="3.4.0"/>
-        <PackageReference Include="MongoDB.Driver" Version="3.4.0"/>
-        <PackageReference Include="NUlid" Version="1.7.2"/>
-        <PackageReference Include="StackExchange.Redis" Version="2.8.37"/>
+        <PackageReference Include="MongoDB.Bson" Version="3.4.3" />
+        <PackageReference Include="MongoDB.Driver" Version="3.4.3" />
+        <PackageReference Include="NUlid" Version="1.7.3" />
+        <PackageReference Include="StackExchange.Redis" Version="2.9.11" />
     </ItemGroup>
 
 </Project>
