@@ -2,31 +2,30 @@ using AwesomeAssertions;
 
 namespace _2025_xunit_to_the_limits_src.T2;
 
-public class T2_SyncLifeTime
+public class T2_OrdinarySyncLifeTimeTests
 {
-    private int _field = 0;
+    private T2_SystemUnderTest _sut = new();
 
-    public T2_SyncLifeTime()
+    public T2_OrdinarySyncLifeTimeTests()
     {
-        
     }
-    
+
     public void Setup()
     {
-        _field = 2;
+        _sut.Field = 2;
     }
 
     [Fact]
     public void SyncLifeTimeTest()
     {
-        _field.Should().Be(2);
-        _field = 3;
+        _sut.Field.Should().Be(2);
+        _sut.Field = 3;
     }
-    
+
     [Fact]
     public void SyncLifeTimeTestAgain()
     {
-        _field.Should().Be(3);
+        _sut.Field.Should().Be(3);
     }
 
 
