@@ -6,7 +6,7 @@
 - Missing: named/keyed services (😱), decorators, interception, child containers.  
 - Good default for most apps.
 
-*GPT5 is hallucinating: Microsoft.Extensions.DependencyInjection supports since .NET 8 🙏*
+*😱 GPT5 is hallucinating: Microsoft.Extensions.DependencyInjection supports since .NET 8 🙏*
 
 ## Popular third‑party containers
 - Autofac — modules, keyed services, decorators, scanning, property injection. Mature.
@@ -15,6 +15,8 @@
 - Lamar — convention/policy-based registration, decorators (StructureMap successor).
 - LightInject — lightweight, fast, decorators and interception.
 - Castle Windsor — very mature, powerful interception via DynamicProxy.
+*(note from me: back in the day, I used it in 2004 with MonoRail)*
+
 - Stashbox — modern, fast, named/keyed services, decorators.
 - Grace — feature-rich, performant, convention support.
 

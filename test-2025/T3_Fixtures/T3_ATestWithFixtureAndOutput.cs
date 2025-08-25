@@ -23,7 +23,6 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     private string _storedUid;
 
     [Fact]
-    [Trait("MyCategories", "T4_Fixtures")]
     public void Test1()
     {
         _fixture.TestableValue.Should().Be(42);
@@ -31,7 +30,6 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     }
     
     [Fact]
-    [Trait("MyCategories", "T4_Fixtures")]
     public void Test2()
     {
         _fixture.TestableValue.Should().Be(42);
