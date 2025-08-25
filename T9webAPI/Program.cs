@@ -47,10 +47,16 @@ public class Program
                         body { font-family: Arial, sans-serif; margin: 40px; }
                         .endpoint { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; }
                         .method { font-weight: bold; color: #2196F3; }
+                        .swagger-link { background: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+                        .swagger-link:hover { background: #45a049; }
                     </style>
                 </head>
                 <body>
                     <h1>T9webAPI - .NET 10 Web API</h1>
+                    
+                    <h2>Interactive API Documentation:</h2>
+                    <a href="/swagger/" class="swagger-link"> (broken) Open Swagger UI</a>
+                    
                     <h2>Available Endpoints:</h2>
                     
                     <div class="endpoint">
@@ -75,6 +81,46 @@ public class Program
                         <li><a href="/stored/2" target="_blank">GET /stored/2</a></li>
                         <li><a href="/stored/3" target="_blank">GET /stored/3</a></li>
                     </ul>
+                </body>
+                </html>
+                """, "text/html"));
+                
+            // Add Swagger UI endpoint that consumes the native OpenAPI JSON
+            app.MapGet("/swagger", () => Results.Content("""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>T9webAPI - Swagger UI</title>
+                    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.10.3/swagger-ui.css" />
+                    <style>
+                        html { box-sizing: border-box; overflow: -moz-scrollbars-vertical; overflow-y: scroll; }
+                        *, *:before, *:after { box-sizing: inherit; }
+                        body { margin:0; background: #fafafa; }
+                    </style>
+                </head>
+                <body>
+                    <div id="swagger-ui"></div>
+                    <script src="https://unpkg.com/swagger-ui-dist@5.10.3/swagger-ui-bundle.js"></script>
+                    <script src="https://unpkg.com/swagger-ui-dist@5.10.3/swagger-ui-standalone-preset.js"></script>
+                    <script>
+                        window.onload = function() {
+                            const ui = SwaggerUIBundle({
+                                url: '/openapi/v1.json',
+                                dom_id: '#swagger-ui',
+                                deepLinking: true,
+                                presets: [
+                                    SwaggerUIBundle.presets.apis,
+                                    SwaggerUIStandalonePreset
+                                ],
+                                plugins: [
+                                    SwaggerUIBundle.plugins.DownloadUrl
+                                ],
+                                layout: "StandaloneLayout"
+                            });
+                        };
+                    </script>
                 </body>
                 </html>
                 """, "text/html"));
