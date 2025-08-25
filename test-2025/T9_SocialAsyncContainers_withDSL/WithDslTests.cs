@@ -14,8 +14,7 @@ namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL;
 [Collection(nameof(SharedDslCollection))]
 public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
 {
-    //  private readonly IPlaywright _playwright;
-    //  private WafWithMongoAdapter _waf;
+    // hide the plumbing from the tests
     private readonly DslFixture _fixtureDsl;
 
     public WithDslTests(DslFixture fixtureDsl, ITestOutputHelper outputHelper)
@@ -28,12 +27,8 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
         // also the DSL will expose what is required for the business logic to be tested in a clean way
     }
 
-    public async Task InitializeAsync()
+    async Task IAsyncLifetime.InitializeAsync()
     {
-        // var mongoDbConnection = new MongoDbConnection(_fixture.DbConnectionString(), _fixture.NewDbName());
-        //  _waf = new WafWithMongoAdapter(mongoDbConnection);  
-        //_waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
-        //  _waf.StartServer(); 
         await this._fixtureDsl.InitializeAsync(); // HERE !!!! super important to AWAIT for this
         // the fixture is reInitialized everytime, which create new containers... SLOWER :(
 
@@ -63,10 +58,9 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
                 actualDto.Should().BeEquivalentTo(someDto);
             });
     }
-    
 
 
-    public async Task DisposeAsync()
+    async Task IAsyncLifetime.DisposeAsync()
     {
         await _fixtureDsl.DisposeAsync();
     }
