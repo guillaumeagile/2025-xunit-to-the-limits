@@ -24,7 +24,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.54.0" />
         <PackageReference Include="Microsoft.Playwright.Xunit" Version="1.54.0" />
-        <PackageReference Include="xbehave" Version="2.4.1" />
+
+        <PackageReference Include="Reqnroll" Version="2.2.0" />
+        <PackageReference Include="Reqnroll.xUnit" Version="2.2.0" />
         
  
         <PackageReference Include="Testcontainers" Version="4.6.0" />
@@ -47,6 +49,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="T11_WrappingWithBDD\" />
       <Folder Include="T9_SocialAsyncContainers_withDSL\Fakes\" />
     </ItemGroup>
 
