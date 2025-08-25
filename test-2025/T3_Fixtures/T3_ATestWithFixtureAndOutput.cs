@@ -20,13 +20,11 @@ namespace _2025_xunit_to_the_limits_src.T3_Fixtures;
 public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFixture>
 {
     private readonly ZeSimpleSyncLifeTimeFixture _fixture;
-    private string _storedUid;
 
     [Fact]
     public void Test1()
     {
         _fixture.TestableValue.Should().Be(42);
-        _storedUid = _fixture.Uid; // you shouldn't write stuff like that
     }
     
     [Fact]
@@ -51,24 +49,26 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     }
 
     
-    // we need to have that fixture
+    // we will receive the fixture in the constructor, alongside with the outputHelper 
     public T3_ATestWithFixtureAndOutput(ZeSimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
     {
-        outputHelper.WriteLine("welcome in T4_ATestWithFixtureAndOutput");
+        outputHelper.WriteLine("welcome in T3_ATestWithFixtureAndOutput");
         _fixture = fixture;
         outputHelper.WriteLine("fixture.TestableValue is " + fixture.TestableValue.ToString());
         
         Console.WriteLine("you will never see this 👻 👻 👻");
 
         
-        
-        
-        
-        
-        
-        
+        //_fixture.Reset();
+
+
+
+
+
+
+
         // outputHelper is not ILogger 🤔
-        // this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
+         this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
     }
 
     public ILogger TestLogger { get; init; }

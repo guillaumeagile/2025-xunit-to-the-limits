@@ -21,4 +21,9 @@ public class ZeSimpleSyncLifeTimeFixture : IDisposable
         TestableValue = 0;
         Console.WriteLine("this is the TEARDOW of the fixture");
     }
+
+    public void Reset()
+    {
+        TestableValue = 42;
+    }
 }
