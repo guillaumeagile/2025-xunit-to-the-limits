@@ -14,11 +14,12 @@ public class AnotherCollectionOfTestsWithFake : ICollectionFixture<TestFixtureWi
 }
 
 
-public class TestFixtureWithAnyRepo 
+public class TestFixtureWithAnyRepo : IAmAFixture // must be a concrete class
 {
     public IRepository<Element> Repository { get; protected set; }
+    public void Dispose()
+    { }
 }
-
 
 public class TestFixtureWithFake : TestFixtureWithAnyRepo
 {
@@ -33,5 +34,8 @@ public class TestFixtureWithDriver : TestFixtureWithAnyRepo
 // will be used when removing the comment in A0_SocialTestCollectable
 [CollectionDefinition(nameof(CollectionOfTestsWithDriver))]
 public class CollectionOfTestsWithDriver : ICollectionFixture<TestFixtureWithDriver>
+{
+}
+public interface IAmAFixture : IDisposable
 {
 }

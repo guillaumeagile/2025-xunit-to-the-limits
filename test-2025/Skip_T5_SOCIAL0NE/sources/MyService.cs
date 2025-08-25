@@ -21,6 +21,8 @@ public class MyService
 
     public bool SaveSocial(Element anElement)
     {
+        // do something smart here, like V&V
         return _repository.Save(anElement);
+        // or push events...
     }
 }
