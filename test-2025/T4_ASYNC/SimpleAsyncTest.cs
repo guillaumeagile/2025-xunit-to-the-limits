@@ -5,21 +5,21 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T4_ASYNC;
 
-public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture>, IAsyncLifetime
+public class SimpleAsyncTest : IClassFixture<AsyncLifeTimeWithLoggerFixture>, IAsyncLifetime
 {
     private readonly string _filePath;
-    private readonly SimpleSyncLifeTimeWithLoggerFixture _fixture;
+    private readonly AsyncLifeTimeWithLoggerFixture _fixture;
 
 
-    public SimpleAsyncTest(SimpleSyncLifeTimeWithLoggerFixture fixture, ITestOutputHelper outputHelper)
+    public SimpleAsyncTest(AsyncLifeTimeWithLoggerFixture fixture, ITestOutputHelper outputHelper)
     {
-        fixture.SetOutputToLogger(outputHelper);
+        fixture.SetOutputToLogger(outputHelper); // ok for later,
+                                                 // but too late for ctor and initAsync of the fixture
         _fixture = fixture;
         _filePath = Path.Combine(Directory.GetCurrentDirectory(), "test-2025.dll");
         fixture.TestLogger.LogInformation("SimpleAsyncTest  constructed");
     }
-
-
+    
     [Fact]
     public void ExecuteSync_sync()
     {
@@ -49,16 +49,16 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
         await sut.ASyncCompute(_filePath);
         _fixture.TestLogger.LogInformation("finished ExecuteAsync test");
     }
-    
+
     [Fact]
     public async Task Rewrite_ExecuteSync_Await_AndVerifyResult()
     {
         var sut = new SutClassAsync(_fixture.TestLogger);
-        
+
         var actual = await sut.ASyncCompute(_filePath);
 
         actual.Should().BeAssignableTo<String>().And
-        .NotBeAssignableTo<Task>();
+            .NotBeAssignableTo<Task>();
     }
 
     public Task InitializeAsync()
@@ -74,26 +74,37 @@ public class SimpleAsyncTest : IClassFixture<SimpleSyncLifeTimeWithLoggerFixture
     }
 }
 
-public class SimpleSyncLifeTimeWithLoggerFixture : IDisposable
+public class AsyncLifeTimeWithLoggerFixture : IAsyncLifetime, IDisposable
 {
     public ILogger TestLogger { get; private set; } = NullLogger.Instance;
 
     public int TestableValue { get; private set; }
 
     public void SetOutputToLogger(ITestOutputHelper outputHelper) =>
-        TestLogger = outputHelper.ToLogger<SimpleSyncLifeTimeWithLoggerFixture>();
-
-
-    public SimpleSyncLifeTimeWithLoggerFixture()
+        TestLogger = outputHelper.ToLogger<AsyncLifeTimeWithLoggerFixture>();
+    
+    public AsyncLifeTimeWithLoggerFixture()
     {
-        TestLogger.LogWarning("this is the SETUP of the fixture");   // WARNING ! you will never see this
+        TestLogger.LogWarning("you cannot log into the ctor of the fixture"); // WARNING ! you will never see this
         TestableValue = 42;
     }
+  
 
+    public Task InitializeAsync()
+    {
+        TestLogger.LogCritical("👓 👓 👓  InitializeAsync");
+        return Task.CompletedTask;
+    }
 
+    public Task DisposeAsync()
+    {
+        TestLogger.LogCritical("👓 👓 👓  DisposeAsync");
+        return Task.CompletedTask;
+    }
+    
     public void Dispose()
     {
         TestableValue = 0;
-        TestLogger.LogCritical("👓 👓 👓  this is the TEARDOW of the fixture");
+        TestLogger.LogCritical("👓 👓 👓  could be the TEARDOW of the fixture");
     }
 }
