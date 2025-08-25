@@ -4,13 +4,13 @@ using T8_Repositories_Adapters.source;
 
 namespace T9webAPI;
 
-public class MockStorageAdapter : IStorageAdapter<SomeDto>
+public class InMemStorageAdapter : IStorageAdapter<SomeDto>
 {
     private readonly List<SomeDto> _data = new()
     {
         new SomeDto("1", "John Doe", 30),
         new SomeDto("2", "Jane Smith", 25),
-        new SomeDto("3", "Bob Johnson", 35)
+        new SomeDto("3", "Bob Johnson", 65)
     };
 
     public Task<Result<SomeDto>> GetByIdAsync(string id, CancellationToken token)
@@ -28,6 +28,9 @@ public class MockStorageAdapter : IStorageAdapter<SomeDto>
 
     public Task<Result<SomeDto>> InsertOrUpdateAsync(SomeDto dataObject, CancellationToken token)
     {
+        if (dataObject.Age == 42)
+            throw new Exception("You can't insert a fake item with age 42");
+        
         var existing = _data.FirstOrDefault(x => x.Id == dataObject.Id);
         if (existing != null)
         {

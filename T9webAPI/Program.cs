@@ -27,7 +27,7 @@ public class Program
         });
         
         // Register storage adapter (using a mock implementation for now)
-        builder.Services.AddSingleton<IStorageAdapter<SomeDto>, MockStorageAdapter>();
+        builder.Services.AddSingleton<IStorageAdapter<SomeDto>, InMemStorageAdapter>();
 
         var app = builder.Build();
 

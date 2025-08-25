@@ -46,21 +46,21 @@ public class WithDslTests : IClassFixture<DslFixture>, IAsyncLifetime
     [Fact]
     public async Task CallRouteGetById_Concise()
     {
-        var someDto = new SomeDto("2", "Foobar", 42);
+        var someDto = new SomeDto("42", "Foobar", 42);
         
         await _fixtureDsl
             .InsertSome(someDto)
             .ContinueWith(async _ =>
             {
                 await using var result = await _fixtureDsl
-                    .SetRelativePathTo("stored/2")
+                    .SetRelativePathTo("stored/42")
                     .GetAllAsync();
                 
                 var jsonElement = await result.ExtractJsonAsync();
                 jsonElement.HasValue.Should().BeTrue();
                 
-                var actualdDto = JsonSerializer.Deserialize<SomeDto>(jsonElement.ToString());
-                actualdDto.Should().BeEquivalentTo(someDto);
+                var actualDto = JsonSerializer.Deserialize<SomeDto>(jsonElement.ToString());
+                actualDto.Should().BeEquivalentTo(someDto);
             });
     }
     

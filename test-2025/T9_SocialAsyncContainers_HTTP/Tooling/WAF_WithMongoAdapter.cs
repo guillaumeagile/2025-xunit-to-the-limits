@@ -22,8 +22,9 @@ public class WafWithMongoAdapter  : WebApplicationFactory<T9webAPI.Program>
     {
         builder.ConfigureTestServices(svc =>
         {
+            // INJECTION WITH THE CONNECTION OBTAINED FROM THE FIXTURE => testcontainers in Action, once again 
             _mongoStorageAdapter = new MongoStorageAdapter<SomeDto>(_mongoDbConnection);
-     //       _fakeStorageAdapter = new FakeStorageAdapter<SomeDto>();  // to keep track of the adapter being injected
+            
             svc.AddSingleton<IStorageAdapter<SomeDto>>(sp => _mongoStorageAdapter);
         });
     }

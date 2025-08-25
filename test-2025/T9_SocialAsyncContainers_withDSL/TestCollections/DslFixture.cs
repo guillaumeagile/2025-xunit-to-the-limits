@@ -13,11 +13,11 @@ namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL.TestCol
 public class DslFixture
 {
     // client for http calls
-    protected IBrowser Browser { get; private set; } = null!;
-    protected IPlaywright PlaywrightInstance { get; private set; } = null!;
+    private IBrowser Browser { get; set; } = null!;
+    private IPlaywright PlaywrightInstance { get; set; } = null!;
 
     // WAF for http server
-    protected WafWithMongoAdapter? Waf { get; private set; }
+    private WafWithMongoAdapter? Waf { get; set; }
 
     // container for Mongo
     private const string _mongoImage = "mongo:7.0.16-jammy";
@@ -55,7 +55,7 @@ public class DslFixture
 
     public async Task DisposeAsync()
     {
-        Waf.Dispose();
+        await Waf.DisposeAsync();
         await Browser.DisposeAsync();
         PlaywrightInstance.Dispose();
 

@@ -13,7 +13,7 @@ public class SharedPlaywrightCollectionAndContainers : ICollectionFixture<Playwr
 // ReSharper disable once ClassNeverInstantiated.Global
 public class PlaywrightFixtureWithContainers : PlaywrightFixture
 {
-    private const string _mongoImage = "mongo:7.0.16-jammy";
+    private const string _mongoImage = "mongo:7.0-jammy";
     
     private MongoDbContainer? _mongoContainer;
     private MongoClient dbClient;
