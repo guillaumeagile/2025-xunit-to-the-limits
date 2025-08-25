@@ -90,7 +90,7 @@ public class DslFixture
             var weatherPath = waf.ClientOptions.BaseAddress.ToString() + basePath;  ;
               _ctx = await playwrightInstance.APIRequest.NewContextAsync();
              _response = await _ctx.GetAsync(weatherPath);
-            _response.Ok.Should().BeTrue();
+          //  _response.Ok.Should().BeTrue();
             return new DslFixtureWResponse(_response); ;
         }
   

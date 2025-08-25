@@ -5,6 +5,8 @@ namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_withDSL.TestCol
 
 public class DslFixtureWResponse(IAPIResponse response) : IAsyncDisposable, IDisposable
 {
+    public IAPIResponse Response => response;
+    
     public async  Task<JsonElement?> ExtractJsonAsync()
     {
         return await response.JsonAsync();
