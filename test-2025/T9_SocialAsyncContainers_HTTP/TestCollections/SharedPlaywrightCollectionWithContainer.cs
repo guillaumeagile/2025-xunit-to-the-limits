@@ -8,10 +8,10 @@ using Testcontainers.MongoDb;
 namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
 [CollectionDefinition(nameof(SharedPlaywrightCollectionAndContainers))]
-public class SharedPlaywrightCollectionAndContainers : ICollectionFixture<PlaywrightFixtureWithContainers> {}
+public class SharedPlaywrightCollectionAndContainers : ICollectionFixture<PlaywrightFixtureWithMongoContainer> {}
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class PlaywrightFixtureWithContainers : PlaywrightFixture
+public class PlaywrightFixtureWithMongoContainer : PlaywrightFixture
 {
     private const string _mongoImage = "mongo:7.0-jammy";
     

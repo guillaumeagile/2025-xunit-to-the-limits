@@ -11,13 +11,13 @@ namespace _2025_xunit_to_the_limits_src.T9_SocialAsyncContainers_HTTP;
 
 
 [Collection(nameof(SharedPlaywrightCollectionAndContainers))]
-public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithContainers>, IAsyncLifetime
+public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithMongoContainer>, IAsyncLifetime
 {
     private readonly IPlaywright _playwright;
     private WafWithMongoAdapter _waf;
-    private readonly PlaywrightFixtureWithContainers _fixture;
+    private readonly PlaywrightFixtureWithMongoContainer _fixture;
 
-    public WithContainersApiTests(PlaywrightFixtureWithContainers fixture, ITestOutputHelper outputHelper)  
+    public WithContainersApiTests(PlaywrightFixtureWithMongoContainer fixture, ITestOutputHelper outputHelper)  
     {
         _playwright = fixture.PlaywrightInstance;
         fixture.TestLogger = outputHelper.ToLogger<WithContainersApiTests>();
