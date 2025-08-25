@@ -6,4 +6,5 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::1C66319E-78D2-406B-85D0-6D4CC06E38B3::net8.0::_2025_xunit_to_the_limits_src.UnitTest1&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=1e694f1d_002D0356_002D4365_002Dbb48_002D52fb0b8fe4b7_0023BenchmarkToTheLimits/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

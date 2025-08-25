@@ -44,6 +44,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\T8_Repositories_Adapters\T8_Repositories_Adapters.csproj" />
       <ProjectReference Include="..\T9webAPI\T9webAPI.csproj" />
     </ItemGroup>

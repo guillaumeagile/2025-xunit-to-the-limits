@@ -13,6 +13,7 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
         _sut = new MyService(fixture.Repository);
     }
 
+
     [Fact]
     public void OneSocialSharedTest()  // launch this test will run both fixtures
     {
