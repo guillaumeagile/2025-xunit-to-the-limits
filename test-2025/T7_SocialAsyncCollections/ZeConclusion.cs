@@ -4,6 +4,8 @@ public class ZeConclusion
 {
     /*
      * why don't you use  Dependency Injection ????
-     * 
+     *
+     * of course, I could... 🙄
+     * well, a least with that approach , I have no temptation to use the (anti)pattern of ServiceLocator ^^
      */
 }
