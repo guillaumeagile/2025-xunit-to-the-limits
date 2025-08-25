@@ -2,7 +2,7 @@ using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 
 namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 
-public class MyService
+public class MyService // aka the SUT
 {
     private readonly IRepository<Element> _repository;
 

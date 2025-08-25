@@ -3,18 +3,7 @@ using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 
 namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
 
-[CollectionDefinition(nameof(CollectionOfTestsWithFake))]
-public class CollectionOfTestsWithFake : ICollectionFixture<TestFixtureWithFake>
-{
-}
-
-[CollectionDefinition(nameof(AnotherCollectionOfTestsWithFake))] //same fixture
-public class AnotherCollectionOfTestsWithFake : ICollectionFixture<TestFixtureWithFake>
-{
-}
-
-
-public class TestFixtureWithAnyRepo : IAmAFixture // must be a concrete class
+public class TestFixtureWithAnyRepo : IAmAFixture // must be a concrete class, but is designed as a base
 {
     public IRepository<Element> Repository { get; protected set; }
     public void Dispose()
@@ -31,11 +20,6 @@ public class TestFixtureWithDriver : TestFixtureWithAnyRepo
     public TestFixtureWithDriver() => Repository = new DriverRepository<Element>();
 }
 
-// will be used when removing the comment in A0_SocialTestCollectable
-[CollectionDefinition(nameof(CollectionOfTestsWithDriver))]
-public class CollectionOfTestsWithDriver : ICollectionFixture<TestFixtureWithDriver>
-{
-}
 public interface IAmAFixture : IDisposable
 {
 }

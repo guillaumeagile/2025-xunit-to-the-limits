@@ -1,8 +1,9 @@
 using _2025_xunit_to_the_limits_src.T5_SOCIAL0NE.sources;
 using AwesomeAssertions;
 
-namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections;
+namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections.WithInheritance;
 
+[Trait("Category", "BaseClass")]
 public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
 {
     private readonly MyService _sut;
@@ -20,22 +21,5 @@ public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
         var resOfSave = _sut.SaveSocial(anElement);
 
         resOfSave.Should().BeTrue("this tests is supposed to run with a friend, not a foe!");
-    }
-}
-
-
-[Collection(nameof(TestFixtureWithDriver))]
-public class SocialTestWithDriver : SocialTestBase, IClassFixture<TestFixtureWithDriver>
-{
-    public SocialTestWithDriver(TestFixtureWithDriver fixture) : base(fixture)
-    {
-    }
-}
-
-[Collection(nameof(TestFixtureWithFake))]
-public class SocialTestWithFake : SocialTestBase, IClassFixture<TestFixtureWithFake>
-{
-    public SocialTestWithFake(TestFixtureWithFake fixture) : base(fixture)
-    {
     }
 }
