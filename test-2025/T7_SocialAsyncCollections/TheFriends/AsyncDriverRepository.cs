@@ -6,7 +6,7 @@ public class AsyncDriverRepository<T> : IAsyncRepository<Element>
 {
     public Task<bool> SaveAsync(Element anElement)
     {
-        Thread.Sleep(3000);
+        Thread.Sleep(2000);
         return Task.FromResult(true);
     }
 }

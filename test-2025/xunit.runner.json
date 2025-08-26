@@ -1,0 +1,13 @@
+{ 
+  
+  "methodDisplay": "method",
+  "methodDisplayOptions": "all",
+  "preEnumerateTheories": false,
+  "diagnosticMessages": false,
+  "internalDiagnosticMessages": false,
+  "filters": {
+    "excludedTraits": {
+      "Category": ["BaseClass"]
+    }
+  }
+}
