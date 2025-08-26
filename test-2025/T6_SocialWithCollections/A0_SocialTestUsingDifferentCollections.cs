@@ -10,12 +10,10 @@ public class A0_SocialTestUsingDifferentCollections : IClassFixture<TestFixtureW
     private readonly MyService sut;
 
     public A0_SocialTestUsingDifferentCollections(TestFixtureWithFake fixture)
-    //   public A0_SocialTestUsingDifferentCollections(TestFixtureWithDriver fixture)
+   //    public A0_SocialTestUsingDifferentCollections(TestFixtureWithDriver fixture)
     {
         sut = new MyService(fixture.Repository);
     }
-
-    
 
     [Fact]
     public void SocialPalGivenByFixture()
