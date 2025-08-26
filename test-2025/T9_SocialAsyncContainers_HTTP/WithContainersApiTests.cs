@@ -31,7 +31,7 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithMongoCo
         _waf = new WafWithMongoAdapter(mongoDbConnection);  
         // And voila, the WAF is connected to the container!
         
-        _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
+        _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); }); //thank you .Net 10 🤓
         _waf.StartServer(); //  no StartAsync yet :(
         
         //BENEFIT: No infrastructure required to launch the API and its database :)
@@ -65,7 +65,9 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithMongoCo
         // fast compare: check if the json can be deserialized to the same object
         var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
         deserializedDto.Should().BeEquivalentTo(someDto);
-        
+        // NEVER DO THAT ON PROD ⚠️
+        // dto for the persistence should not be the same as the one returned by the API 
+
     }
 
     

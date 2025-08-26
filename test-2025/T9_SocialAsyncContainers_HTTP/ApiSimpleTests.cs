@@ -22,7 +22,7 @@ public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncL
         _playwright = fixture.PlaywrightInstance;
         _browser = fixture.Browser;
          _waf = new MyWebAppFactory();
-        _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); });
+        _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); }); //new in .Net 10
         _waf.StartServer();
     }
     // this "simple" test  only tests the API, and no infrastructure is provided
@@ -74,8 +74,11 @@ public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncL
             .Subject;
         // fast compare: check if the json can be deserialized to the same object
         var deserializedDto = JsonSerializer.Deserialize<SomeDto>(json.ToString());
-        deserializedDto.Should().BeEquivalentTo(someDto);
-        
+        deserializedDto.Should().BeEquivalentTo(someDto); 
+        // NEVER DO THAT ON PROD ⚠️
+        // dto for the persistence should not be the same as the one returned by the API 
+        deserializedDto.Age.Should().Be(20);
+
     }
 
     public Task InitializeAsync()

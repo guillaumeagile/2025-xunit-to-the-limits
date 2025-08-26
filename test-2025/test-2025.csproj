@@ -53,7 +53,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="T11_WrappingWithBDD\" />
+      <Folder Include="T11_WrappingWithBDDframework\" />
       <Folder Include="T9_SocialAsyncContainers_withDSL\Fakes\" />
     </ItemGroup>
 
