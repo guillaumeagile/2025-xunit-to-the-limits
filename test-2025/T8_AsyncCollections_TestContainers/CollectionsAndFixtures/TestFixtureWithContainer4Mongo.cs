@@ -49,25 +49,24 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime // <----- ⚠️
 
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
 
-        dbClient.GetDatabase(NewDbName());
+        dbClient.GetDatabase(NewDbName()); // trick
     }
-
-    public async Task DisposeAsync()
+    
+    public string NewDbName()
     {
-        await _mongoContainer.DisposeAsync();
+        _dbName = "AlwaysTheSameDatabase";
+        //_dbName = NUlid.Ulid.NewUlid().ToString(); //TRICK !!!!! 
+        return _dbName;
     }
 
     public string? DbConnectionString()
     {
         return _mongoContainer.GetConnectionString();
     }
-
-
-    public string NewDbName()
+    
+    public async Task DisposeAsync()
     {
-         _dbName = "AlwaysTheSameDatabase";
-        //_dbName = NUlid.Ulid.NewUlid().ToString(); //TRICK !!!!! 
-        return _dbName;
+        await _mongoContainer.DisposeAsync();
     }
 
     public string DbName()
