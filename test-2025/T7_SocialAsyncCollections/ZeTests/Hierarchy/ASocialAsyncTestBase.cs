@@ -6,11 +6,12 @@ using Xunit.Abstractions;
 
 namespace _2025_xunit_to_the_limits_src.T7_SocialAsyncCollections.ZeTests.Hierarchy;
 
+/*********** the TEST SUITE *********/
 [Trait("Category", "BaseClass")]
-public abstract class SocialAsyncTestBase : IClassFixture<TestFixtureWithAnyAsyncRepo>, IAsyncLifetime
+public abstract class SocialAsyncTestBase : IAsyncLifetime  //: IClassFixture<TestFixtureWithAnyRepo>
+                                                            // 💡 yes, removing that will prevent the test base from running 👍
 {
-    /*********** the TEST SUITE *********/
-    
+    // only one here, but of course, you can have more ...
     [Fact]
     public async Task SavingWithTheHelpOfFriend()
     {

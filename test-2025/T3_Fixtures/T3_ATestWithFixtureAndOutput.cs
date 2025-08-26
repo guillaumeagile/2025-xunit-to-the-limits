@@ -59,7 +59,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
         Console.WriteLine("you will never see this 👻 👻 👻");
 
         
-        //_fixture.Reset();
+        _fixture.Reset();
 
 
 
@@ -68,7 +68,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
 
 
         // outputHelper is not ILogger 🤔
-        // this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
+         this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
     }
 
     public ILogger TestLogger { get; init; }

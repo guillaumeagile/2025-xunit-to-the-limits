@@ -50,7 +50,7 @@ public class WithContainersApiTests : IClassFixture<PlaywrightFixtureWithMongoCo
         //resultInsertOrUpdate.IsSuccess.Should().BeTrue();
         
         //ARRANGE the http call
-        var weatherPath = _waf.ClientOptions.BaseAddress.ToString() + "stored/2"  ;
+        var weatherPath = _waf.ClientOptions.BaseAddress.ToString() + "stored/22"  ;
         await using var ctx = await _playwright.APIRequest.NewContextAsync();
         
         //ACT

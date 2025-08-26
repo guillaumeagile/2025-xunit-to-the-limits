@@ -4,7 +4,8 @@ using AwesomeAssertions;
 namespace _2025_xunit_to_the_limits_src.T6_SocialWithCollections.WithInheritance;
 
 [Trait("Category", "BaseClass")]
-public abstract class SocialTestBase : IClassFixture<TestFixtureWithAnyRepo>
+public abstract class SocialTestBase //: IClassFixture<TestFixtureWithAnyRepo>
+                                     // 💡 yes, removing that will prevent the test base from running 👍
 {
     private readonly MyService _sut;
 

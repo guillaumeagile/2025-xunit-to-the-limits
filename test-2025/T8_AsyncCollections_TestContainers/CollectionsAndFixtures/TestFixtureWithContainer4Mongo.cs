@@ -24,13 +24,13 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime // <----- ⚠️
             .WithImage(_mongoImage)
             .WithCleanUp(true)
            
-            .WithReuse(false) // safe, because creates a new data volume at each setup, but of course it's slow
+           // .WithReuse(false) // safe, because creates a new data volume at each setup, but of course it's slow
 
             // WHEN ACTIVATING THE SHARE FIXTURE IN A COLLECTION, DO THIS:
             // those 3 lines together to avoid port conflicts and stall
-            //.WithReuse(true) // be careful, super fast but no more isolation -> the data volume is shared
-            //.WithPortBinding(_mongoInternalPort, false) //fixed port for the container
-            //.WithWaitStrategy(waitStrategy: Wait.ForUnixContainer().UntilPortIsAvailable(_mongoInternalPort))
+            .WithReuse(true) // be careful, super fast but no more isolation -> the data volume is shared
+            .WithPortBinding(_mongoInternalPort, false) //fixed port for the container
+            .WithWaitStrategy(waitStrategy: Wait.ForUnixContainer().UntilPortIsAvailable(_mongoInternalPort))
             
             
             // or this one alone to ensure isolation (but not enough)
@@ -54,8 +54,8 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime // <----- ⚠️
     
     public string NewDbName()
     {
-        _dbName = "AlwaysTheSameDatabase";
-        //_dbName = NUlid.Ulid.NewUlid().ToString(); //TRICK !!!!! 
+      //  _dbName = "AlwaysTheSameDatabase";
+        _dbName = NUlid.Ulid.NewUlid().ToString(); //TRICK !!!!! 
         return _dbName;
     }
 

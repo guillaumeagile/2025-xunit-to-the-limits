@@ -23,6 +23,11 @@ public class ApiSimpleTests : IClassFixture<SharedPlaywrightCollection>, IAsyncL
         _browser = fixture.Browser;
          _waf = new MyWebAppFactory();
         _waf.UseKestrel(cfg => { cfg.ListenLocalhost(1234); }); //new in .Net 10
+        // FUN FACT: did you know that Kestrel uses the same base code as NodeJS ?
+        // that's why it's so fast to start and run (and lightweight)
+        // check my other presentation on the subject:
+        // https://docs.google.com/presentation/d/1Ng9NybyR9ZJS7Zvo8WKMQ0UTKUDEimXpD6zcHI0U4Zg/edit?usp=sharing
+        
         _waf.StartServer();
     }
     // this "simple" test  only tests the API, and no infrastructure is provided

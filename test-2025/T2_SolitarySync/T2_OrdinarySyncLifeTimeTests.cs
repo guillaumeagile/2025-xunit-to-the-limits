@@ -8,6 +8,7 @@ public class T2_OrdinarySyncLifeTimeTests
 
     public T2_OrdinarySyncLifeTimeTests()
     {
+        Setup();
     }
 
     public void Setup()

@@ -7,8 +7,10 @@ public class T1_UsingPowerfullAssertions
     [Fact]
     public void StringTest()
     {
-        var s = "earth is flat";
+        var s = "earth is sphere";
+        Assert.True(s.Contains("is flat"));
         Assert.Equal("earth is flat", s);
+        
     }
     
     
