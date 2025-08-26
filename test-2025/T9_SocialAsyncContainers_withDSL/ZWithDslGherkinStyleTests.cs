@@ -27,7 +27,7 @@ public class WithDslGerkhinStyleTests : IClassFixture<DslFixture>, IAsyncLifetim
     public async Task Given_StoredItem_When_RequestingById_Then_ShouldReturnCorrectItem()
     {
         // GIVEN: A stored item in the database
-        var expectedDto = new SomeDto("42", "Foobar", 42);
+        var expectedDto = new SomeDto("42", "Foobar", 888);
         await Given_AnItemIsStoredInDatabase(expectedDto);
         
         // WHEN: Requesting the item by its ID
@@ -35,6 +35,7 @@ public class WithDslGerkhinStyleTests : IClassFixture<DslFixture>, IAsyncLifetim
         
         // THEN: The correct item should be returned
         Then_ItemShouldMatch(actualDto, expectedDto);
+        actualDto.Age.Should().Be(888);
     }
 
     private async Task Given_AnItemIsStoredInDatabase(SomeDto itemToStore)
