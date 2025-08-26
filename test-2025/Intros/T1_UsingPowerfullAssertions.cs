@@ -12,13 +12,18 @@ public class T1_UsingPowerfullAssertions
     }
     
     
+    
+    
     [Fact]
     public void TypeTest()
     {
         object theObject = null;
         theObject.Should().BeNull("because the value is null");
-        //    theObject.Should().NotBeNull();
+      
+       // Assert.NotNull(theObject);
+       // theObject.Should().NotBeNull();
 
+        
         
         
         

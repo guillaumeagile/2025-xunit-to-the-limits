@@ -49,7 +49,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
     }
 
     
-    // we will receive the fixture in the constructor, alongside with the outputHelper 
+    // CTOR: we will receive the fixture in the constructor, alongside with the outputHelper 
     public T3_ATestWithFixtureAndOutput(ZeSimpleSyncLifeTimeFixture fixture, ITestOutputHelper outputHelper)
     {
         outputHelper.WriteLine("welcome in T3_ATestWithFixtureAndOutput");
@@ -68,7 +68,7 @@ public class T3_ATestWithFixtureAndOutput : IClassFixture<ZeSimpleSyncLifeTimeFi
 
 
         // outputHelper is not ILogger 🤔
-         this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
+        // this.TestLogger = outputHelper.ToLogger<ZeSimpleSyncLifeTimeFixture>();
     }
 
     public ILogger TestLogger { get; init; }
