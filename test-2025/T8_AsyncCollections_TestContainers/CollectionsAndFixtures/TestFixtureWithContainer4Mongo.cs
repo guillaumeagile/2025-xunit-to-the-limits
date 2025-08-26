@@ -44,7 +44,7 @@ public class TestFixtureWithContainer4Mongo : IAsyncLifetime // <----- ⚠️
         await _mongoContainer.StartAsync();
         TestLogger.LogInformation("MongoDbContainer started");
 
-        Thread.Sleep(2000); //slows down the test to show you when the container is started (once or twice)
+       // Thread.Sleep(2000); //slows down the test to show you when the container is started (once or twice)
         // depending on which you use the Collection or not
 
         dbClient = new MongoClient(_mongoContainer.GetConnectionString());
