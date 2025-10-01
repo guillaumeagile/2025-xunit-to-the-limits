@@ -4,9 +4,9 @@
 
 ### 🧊 **The Tesseract Metaphor**
 In physics, a tesseract is a 4-dimensional cube. In testing, the metaphor is relevant:
-- **1D**: Simple method calls (input → output)
-- **2D**: Object interactions (methods + state)
-- **3D**: Social testing (objects + dependencies)
+- **1D**: Simple method calls (solitary tests)
+- **2D**: Object interactions (social tests)
+- **3D**: Realistic doubles (social tests + infrastructures)
 - **4D**: **TIME** - When dependencies are created, live, and die
 
 **When unit testing becomes social, time cannot be escaped!**
